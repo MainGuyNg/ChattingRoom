@@ -16,13 +16,17 @@
         var websocket = null;
         if ('WebSocket' in window) {
             console.info("is websocket");
-            websocket = new WebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer");
+            // websocket = new WebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
+            websocket = new WebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer")
         } else if ('MozWebSocket' in window) {
             console.info("is mozwebsocket");
+            // websocket = new MozWebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
             websocket = new MozWebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer");
         } else {
             console.info("is sockJs");
+            // websocket = new SockJS("http://193.112.8.102:8080/ChattingRoom/sockjs/socketServer");
             websocket = new SockJS("http://localhost:8080/ChattingRoom/sockjs/socketServer");
+
         }
         websocket.onopen = onOpen;
         websocket.onmessage = onMessage;
@@ -30,7 +34,12 @@
         websocket.onclose = onClose;
 
         function onMessage(evt) {
-            setMessageInnerHTML(evt.data);
+            console.info(evt.data)
+            if(evt.data!="Cannot find this user") {
+                setMessageInnerHTML(evt.data);
+            }else{
+                alert("找不到该用户");
+            }
         }
 
         function onOpen() {
@@ -49,11 +58,18 @@
             if (websocket.readyState == websocket.OPEN) {
                 var toUser = document.getElementById("toUser").value;
                 var msg = document.getElementById("inputMsg").value;
-                websocket.send(toUser + "&-:" + msg);//调用后台handleTextMessage方法
+                if (toUser == null || toUser == "") {
+                    alert("接收人不能为空！")
+                } else {
+                    if (msg == null || msg == "") {
+                        alert("消息不能为空！")
+                    } else {
+                        websocket.send(toUser + "&-:" + msg);//调用后台handleTextMessage方法
+                    }
+                }
             } else {
                 alert("连接失败!");
             }
-            setMessageInnerHTML("你对"+toUser+"说："+msg);
         }
 
 
@@ -82,8 +98,11 @@
     </script>
 </head>
 <body>
-<h3>你好,${sessionScope.USERNAME}</h3><button onclick="websocketClose();">退出聊天室</button><br/><br/><br/>
+<font style="font-size: 40px;">你好,${sessionScope.USERNAME}</font>
+<a href="${ctx}/websocket/logout" onclick="websocketClose()">退出聊天室</a>
+<br/><br/>
 
+<img src="../img/1.jpg" style="width: 100px;height: 100px;border-radius: 100%"/><br/>
 
 请输入内容：<br/>
 <textarea rows="5" cols="50" id="inputMsg" name="inputMsg"></textarea><br/>

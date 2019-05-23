@@ -31,7 +31,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         String userId = (String) session.getAttributes().get(USER_ID);
         userMap.put(userId, session);
-        sendMessageToAllUsers(new TextMessage("用户 "+userId+" 进入聊天室，当前用户数量为："+userMap.size()));
+        sendMessageToAllUsers(new TextMessage("用户 " + userId + " 进入聊天室，当前用户数量为：" + userMap.size()));
     }
 
     @Override
@@ -46,11 +46,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 String receiver = stringArr[0];
                 messageContent = stringArr[1];
                 sendMessageToUser(receiver, new TextMessage(sender + " 对你说：" + messageContent));
-            }else {
-                sendMessageToAllUsers(new TextMessage("来自 "+sender+" 的群发:"+messageContent));
+            } else {
+                sendMessageToAllUsers(new TextMessage("来自 " + sender + " 的群发:" + messageContent));
             }
-        }else{
-            throw new NullPointerException();
         }
     }
 
@@ -68,8 +66,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
     //关闭连接时触发
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         String userId = (String) session.getAttributes().get(USER_ID);
+        System.out.println(userId + "...连接关闭");
         userMap.remove(userId);
-        sendMessageToAllUsers(new TextMessage("用户 "+userId+" 已断开连接，当前用户数量为 "+userMap.size()));
+        sendMessageToAllUsers(new TextMessage("用户 " + userId + " 已断开连接，当前用户数量为 " + userMap.size()));
     }
 
     @Override
@@ -96,6 +95,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
                     e.printStackTrace();
                 }
                 break;
+            } else {
+                try {
+                    if (userMap.get(id).isOpen()) {
+                        userMap.get(id).sendMessage(new TextMessage("Cannot find this user"));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

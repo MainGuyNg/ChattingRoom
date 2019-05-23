@@ -6,54 +6,22 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9b7635-9779-4d28-b091-67056c72aa39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/junitgenerator-prj-settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ChattingRoom.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mg/config/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mg/interceptor/WebSocketInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/springMVC.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/send.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom.war" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/config/WebSocketConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/controller/WebSocketController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/core/WebSocketHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/interceptor/WebSocketInterceptor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/springMVC.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/jstl-1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-aop-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-beans-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-context-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-context-support-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-core-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-expression-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-jcl-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-messaging-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-web-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-webmvc-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/spring-websocket-5.1.4.RELEASE.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/lib/standard-1.1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/ChattingRoom/send.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mg/config/WebSocketConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mg/controller/WebSocketController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mg/core/WebSocketHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mg/interceptor/WebSocketInterceptor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/springMVC.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/websocket执行流程.png" afterDir="false" />
+    <list default="true" id="2d9b7635-9779-4d28-b091-67056c72aa39" name="Default Changelist" comment="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/springMVC.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/send.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/send.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ChattingRoom.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/controller/WebSocketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/controller/WebSocketController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/springMVC.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/send.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/send.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mg/controller/WebSocketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mg/controller/WebSocketController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/springMVC.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/springMVC.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -66,33 +34,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="437">
+              <caret line="25" column="59" lean-forward="true" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
+                <element signature="e#1654#1655#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/send.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="84" column="101" selection-start-line="84" selection-start-column="101" selection-end-line="84" selection-end-column="101" />
             </state>
           </provider>
         </entry>
@@ -100,11 +50,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="111" column="47" lean-forward="true" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
+            <state relative-caret-position="515">
+              <caret line="100" column="68" lean-forward="true" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/send.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="101" column="57" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="57" />
+              <folding>
+                <element signature="n#style#0;n#font#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/springMVC.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -122,10 +93,19 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>logger.info</find>
+      <find>loginPage</find>
     </findStrings>
     <replaceStrings>
       <replace>System.out.println</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="MainGuy &lt;459789143@qq.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -133,18 +113,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketClazz.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mg/service/WebSocketService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mg/interceptor/WebSocketIntercepter.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/chattingroom.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/chattingroom.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/springMVC.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/mg/config/WebSocketConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mg/interceptor/WebSocketInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/send.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/springMVC.xml" />
       </list>
     </option>
   </component>
@@ -163,6 +143,22 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ChattingRoom Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ChattingRoom Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -176,7 +172,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -266,6 +261,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChattingRoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChattingRoom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -278,12 +281,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558518562828" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558603934623" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -292,12 +296,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Workspace\ChattingRoom\src\main\webapp" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Workspace\ChattingRoom\src\main\webapp\img" />
       <recent name="F:\Workspace\ChattingRoom\src\main\webapp\WEB-INF" />
       <recent name="F:\Workspace\ChattingRoom\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Workspace\ChattingRoom\src\main\webapp" />
+      <recent name="F:\Workspace\ChattingRoom\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -315,7 +321,9 @@
   <component name="RunManager">
     <configuration name="Tomcat 8.5.35" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.35" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="HOT_SWAP_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="ChattingRoom:war">
           <settings>
@@ -324,7 +332,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_ChattingRoom" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_ChattingRoom_2" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -332,7 +340,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="61133" />
+        <option name="DEBUG_PORT" value="63195" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -399,43 +407,46 @@
       <updated>1558421552449</updated>
       <workItem from="1558421554857" duration="13899000" />
       <workItem from="1558491020414" duration="19360000" />
+      <workItem from="1558578392281" duration="9953000" />
+      <workItem from="1558596722268" duration="7084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33259000" />
+    <option name="totallyTimeSpent" value="50296000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4991708" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.50082916" side_tool="true" visible="true" weight="0.25746268" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.32925472" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39933258" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Spring" order="8" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32925472" />
+      <window_info anchor="bottom" id="Spring" order="8" weight="0.32925472" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.32925472" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="bottom" id="Version Control" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32995737" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="JSF" order="6" weight="0.32995737" />
@@ -448,6 +459,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ChattingRoom.iml">
@@ -504,20 +519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -661,20 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/springMVC.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../apache-maven-3.6.0/Repository/org/springframework/spring-websocket/5.1.4.RELEASE/spring-websocket-5.1.4.RELEASE.jar!/org/springframework/web/socket/TextMessage.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -684,16 +671,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/websocket执行流程.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/interceptor/WebSocketInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="47" column="63" lean-forward="true" selection-start-line="47" selection-start-column="63" selection-end-line="47" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/config/WebSocketConfig.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -707,46 +684,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../apache-maven-3.6.0/Repository/org/springframework/spring-websocket/5.1.4.RELEASE/spring-websocket-5.1.4.RELEASE.jar!/org/springframework/web/socket/WebSocketSession.class">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        <state relative-caret-position="114">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="111" column="47" lean-forward="true" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="304">
+          <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="94" column="25" lean-forward="true" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/img/1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../apache-maven-3.6.0/Repository/org/springframework/spring-websocket/5.1.4.RELEASE/spring-websocket-5.1.4.RELEASE.jar!/org/springframework/web/socket/WebSocketSession.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="437">
+          <caret line="25" column="59" lean-forward="true" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1654#1655#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="515">
+          <caret line="100" column="68" lean-forward="true" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/interceptor/WebSocketInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="47" column="63" lean-forward="true" selection-start-line="47" selection-start-column="63" selection-end-line="47" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/send.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="84" column="101" selection-start-line="84" selection-start-column="101" selection-end-line="84" selection-end-column="101" />
+        <state relative-caret-position="116">
+          <caret line="101" column="57" selection-start-line="101" selection-start-column="43" selection-end-line="101" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#font#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/springMVC.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
