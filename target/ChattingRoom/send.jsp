@@ -16,16 +16,16 @@
         var websocket = null;
         if ('WebSocket' in window) {
             console.info("is websocket");
-            // websocket = new WebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
-            websocket = new WebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer")
+            websocket = new WebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
+            // websocket = new WebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer")
         } else if ('MozWebSocket' in window) {
             console.info("is mozwebsocket");
-            // websocket = new MozWebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
-            websocket = new MozWebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer");
+            websocket = new MozWebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
+            // websocket = new MozWebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer");
         } else {
             console.info("is sockJs");
-            // websocket = new SockJS("http://193.112.8.102:8080/ChattingRoom/sockjs/socketServer");
-            websocket = new SockJS("http://localhost:8080/ChattingRoom/sockjs/socketServer");
+            websocket = new SockJS("http://193.112.8.102:8080/ChattingRoom/sockjs/socketServer");
+            // websocket = new SockJS("http://localhost:8080/ChattingRoom/sockjs/socketServer");
 
         }
         websocket.onopen = onOpen;
@@ -98,11 +98,11 @@
     </script>
 </head>
 <body>
-<font style="font-size: 40px;">你好,${sessionScope.USERNAME}</font>
+<font style="font-size: 30px;">你好,${sessionScope.USERNAME}</font>
 <a href="${ctx}/websocket/logout" onclick="websocketClose()">退出聊天室</a>
 <br/><br/>
 
-<img src="../img/1.jpg" style="width: 100px;height: 100px;border-radius: 100%"/><br/>
+<img src="../img/1.jpg" style="width: 100px;height: 100px;border-radius: 100%;border:2px darkgrey solid;"/><br/>
 
 请输入内容：<br/>
 <textarea rows="5" cols="50" id="inputMsg" name="inputMsg"></textarea><br/>
