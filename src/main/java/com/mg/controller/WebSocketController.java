@@ -1,6 +1,7 @@
 package com.mg.controller;
 
 import com.mg.core.WebSocketHandler;
+import com.mg.utils.SystemCurrentTimeUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,6 @@ import java.text.SimpleDateFormat;
 @Controller
 @RequestMapping("/websocket")
 public class WebSocketController {
-
-    public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Bean//这个注解会从Spring容器拿出Bean
     public WebSocketHandler infoHandler() {
@@ -40,7 +39,7 @@ public class WebSocketController {
         return "login";
     }
 
-    public String getCurrentTime() {
-        return simpleDateFormat.format(System.currentTimeMillis());
+    public static String getCurrentTime() {
+        return SystemCurrentTimeUtil.getCurrentTime();
     }
 }

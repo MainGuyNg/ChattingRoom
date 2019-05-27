@@ -8,13 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2d9b7635-9779-4d28-b091-67056c72aa39" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/send.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/send.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ChattingRoom.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/controller/WebSocketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/controller/WebSocketController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/core/WebSocketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/WEB-INF/classes/com/mg/core/WebSocketHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ChattingRoom/send.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/ChattingRoom/send.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mg/controller/WebSocketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mg/controller/WebSocketController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mg/core/WebSocketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mg/core/WebSocketHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -26,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/send.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+            <state relative-caret-position="665">
+              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -38,10 +33,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+            <state relative-caret-position="401">
+              <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1554#1555#0" expanded="true" />
+                <element signature="e#1614#1615#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/utils/SystemCurrentTimeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
+                <element signature="e#428#429#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1273">
+            <state relative-caret-position="515">
               <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,8 +75,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -101,9 +112,10 @@
         <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/springMVC.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/send.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mg/utils/SystemCurrentTimeUtil.java" />
       </list>
     </option>
   </component>
@@ -150,7 +162,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -260,13 +271,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558609366814" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558949868296" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -388,7 +400,8 @@
       <workItem from="1558491020414" duration="19360000" />
       <workItem from="1558578392281" duration="9953000" />
       <workItem from="1558596722268" duration="10544000" />
-      <workItem from="1558663941653" duration="399000" />
+      <workItem from="1558663941653" duration="1440000" />
+      <workItem from="1558923156514" duration="4540000" />
     </task>
     <task id="LOCAL-00001" summary="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;10.新增webapp文件夹内的img文件夹的静态资源放行&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能">
       <created>1558603979962</created>
@@ -397,17 +410,24 @@
       <option name="project" value="LOCAL" />
       <updated>1558603979962</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;10.新增webapp文件夹内的img文件夹的静态资源放行&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能">
+      <created>1558664438848</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558664438848</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54155000" />
+    <option name="totallyTimeSpent" value="59736000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991708" visible="true" weight="0.26012793" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4991708" visible="true" weight="0.26279318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -730,27 +750,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/send.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+        <state relative-caret-position="665">
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+        <state relative-caret-position="515">
+          <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/core/WebSocketHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/controller/WebSocketController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
+        <state relative-caret-position="401">
+          <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1554#1555#0" expanded="true" />
+            <element signature="e#1614#1615#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mg/utils/SystemCurrentTimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
           </folding>
         </state>
       </provider>
