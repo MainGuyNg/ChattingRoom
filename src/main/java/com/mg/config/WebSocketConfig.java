@@ -26,7 +26,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
      */
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
         webSocketHandlerRegistry.addHandler(webSocketHandler(), "/websocket/socketServer").addInterceptors(new WebSocketInterceptor()).setAllowedOrigins("*");
-        webSocketHandlerRegistry.addHandler(webSocketHandler(), "/sockjs/socketServer").setAllowedOrigins("http://193.112.8.102:8080").addInterceptors(new WebSocketInterceptor()).withSockJS();
+        webSocketHandlerRegistry.addHandler(webSocketHandler(), "/sockjs/socketServer").setAllowedOrigins("http://localhost:8080").addInterceptors(new WebSocketInterceptor()).withSockJS();
     }
 
     @Bean
