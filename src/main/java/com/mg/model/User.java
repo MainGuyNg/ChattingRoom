@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     private String userId;
 
-    private String username;
+    private String accountNumber;
 
     private String nickname;
 
@@ -23,6 +23,8 @@ public class User {
 
     private Date modifyTime;
 
+    private Date loginTime;
+
     private String headUrl;
 
     public String getUserId() {
@@ -33,12 +35,12 @@ public class User {
         this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber == null ? null : accountNumber.trim();
     }
 
     public String getNickname() {
@@ -105,11 +107,37 @@ public class User {
         this.modifyTime = modifyTime;
     }
 
+    public Date getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+
     public String getHeadUrl() {
         return headUrl;
     }
 
     public void setHeadUrl(String headUrl) {
         this.headUrl = headUrl == null ? null : headUrl.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", sex=" + sex +
+                ", location='" + location + '\'' +
+                ", birthday=" + birthday +
+                ", createTime=" + createTime +
+                ", modifyTime=" + modifyTime +
+                ", loginTime=" + loginTime +
+                ", headUrl='" + headUrl + '\'' +
+                '}';
     }
 }

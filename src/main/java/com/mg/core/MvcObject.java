@@ -40,4 +40,9 @@ public class MvcObject {
         this.code = code;
         this.map = map;
     }
+
+    public MvcObject(String msg, String code) {
+        this.msg = msg;
+        this.code = code;
+    }
 }

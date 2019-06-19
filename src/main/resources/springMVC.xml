@@ -24,9 +24,11 @@
 	</mvc:annotation-driven>
 
 	<!-- 静态资源访问 -->
-	<mvc:resources location="/" mapping="/*.jsp"></mvc:resources>
-	<mvc:resources location="/" mapping="/*.html"></mvc:resources>
-	<mvc:resources location="/img" mapping="/*"></mvc:resources>
+	<mvc:default-servlet-handler/>
+	<!--<mvc:resources location="/" mapping="/*.jsp"></mvc:resources>-->
+	<!--<mvc:resources location="/" mapping="/*.html"></mvc:resources>-->
+	<!--<mvc:resources location="../img" mapping="/**"></mvc:resources>-->
+	<!--<mvc:resources location="../css" mapping="/**"></mvc:resources>-->
 
 
 	<!-- 统一异常处理 -->
@@ -42,10 +44,10 @@
 	</bean>
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!--这里的配置是自动给后面action的方法return的字符串加上前缀和后缀，变成一个可用的url地址-->
-		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!--这里的配置是自动给后面action的方法return的字符串加上前缀和后缀，变成一个可用的url地址-->
+	<property name="prefix" value="/" />
+	<property name="suffix" value=".jsp" />
+</bean>
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">

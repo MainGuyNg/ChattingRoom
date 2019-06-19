@@ -69,50 +69,6 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
-    <!-- 数据库的事务管理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
-    </bean>
-
-    <!-- 事务管理，事务出现异常回滚 -->
-    <tx:advice id="advisor">
-        <tx:attributes>
-            <!--
-            name是需要回滚的方法
-            rollback-for是发生什么异常时回滚
-            propagation有七种配置，REQUIRED、SUPPORTS、MANDATORY、REQUIRES_NEW、NOT_SUPPORTED、NEVER、NESTED。默认是REQUIRED。
-
-            下面是Spring中Propagation类的事务属性详解：
-                REQUIRED：支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。
-                SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。
-                MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。
-                REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。
-                NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。
-                NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。
-                NESTED：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。
-            -->
-            <tx:method name="*" rollback-for="Exception" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <!-- 缓存的注解驱动 -->
-    <cache:annotation-driven/>
-
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <set>
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-                    <!-- value里的值userInfo是在service层的带有@Cacheable注解的方法，在这里需要引入进来 -->
-                    <property name="name" value="userInfo"></property>
-                </bean>
-                <!-- 每需要增加一个@Cacheable和@CacheEvict,必须新增一个bean重写 -->
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-                    <property name="name" value="cacheTest"></property>
-                </bean>
-            </set>
-        </property>
-    </bean>
-
     <!--WebSocket整合-->
     <!--配置websocket处理器-->
     <bean id="websocket" class="com.mg.core.WebSocketHandler"/>

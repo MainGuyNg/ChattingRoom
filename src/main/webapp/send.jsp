@@ -97,11 +97,12 @@
     </script>
 </head>
 <body>
-<font style="font-size: 30px;">你好,${sessionScope.USERNAME}</font>
-<a href="${ctx}/websocket/logout" onclick="websocketClose()">退出聊天室</a>
+<font style="font-size: 30px;">你好,${sessionScope.NICKNAME}</font>
+<a href="${ctx}/user/personal_info">个人中心</a>
+<a href="${ctx}/user/logout" onclick="websocketClose()">退出聊天室</a>
 <br/><br/>
 
-<img src="../img/1.jpg" style="width: 100px;height: 100px;border-radius: 100%;border:2px darkgrey solid;"/><br/>
+<img src="${ctx}/img/1.jpg" style="width: 100px;height: 100px;border-radius: 100%;border:2px darkgrey solid;"/><br/>
 
 请输入内容：<br/>
 <textarea rows="5" cols="50" id="inputMsg" name="inputMsg"></textarea><br/>

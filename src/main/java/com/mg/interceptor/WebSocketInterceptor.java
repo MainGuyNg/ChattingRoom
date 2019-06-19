@@ -33,9 +33,9 @@ public class WebSocketInterceptor extends HttpSessionHandshakeInterceptor {
             HttpSession session = servletRequest.getServletRequest().getSession();
             if (session != null) {
                 //使用userName区分WebSocketHandler，以便定向发送消息
-                String userName = (String) session.getAttribute("USERNAME");  //一般直接保存user实体
-                if (userName != null) {
-                    attributes.put("WEBSOCKET_USERID", userName);
+                String accountNumber = (String) session.getAttribute("ACCOUNTNUMBER");  //一般直接保存user实体
+                if (accountNumber != null) {
+                    attributes.put("WEBSOCKET_USERID", accountNumber);
                 }
 
             }
