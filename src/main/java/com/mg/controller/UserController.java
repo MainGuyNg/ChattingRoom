@@ -1,9 +1,7 @@
 package com.mg.controller;
 
 import com.mg.core.MvcObject;
-import com.mg.model.User;
 import com.mg.service.UserService;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

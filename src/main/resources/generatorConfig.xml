@@ -9,7 +9,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://193.112.8.102:3306/chattingroom?useSSL=false" userId="root" password="MainGuy4597.">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/chattingroom?useSSL=false" userId="root" password="123456">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -20,7 +20,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="com.mg.dao" targetProject="F:\src">
+        <sqlMapGenerator targetPackage="com.mg.dao.mapper" targetProject="F:\src">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
@@ -28,6 +28,31 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="head_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+
+
+
+
+        <table tableName="friend_list" domainObjectName="FriendList" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
+        <table tableName="friend_list_content" domainObjectName="FriendListContent" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
+        <table tableName="friend_message_record" domainObjectName="FriendMessageRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="message" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+
+        <table tableName="group" domainObjectName="Group" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="group_description" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="group_head_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+
+        <table tableName="group_message_record" domainObjectName="GroupMessageRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <columnOverride column="message" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+
+        <table tableName="group_user" domainObjectName="GroupUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
     </context>
 </generatorConfiguration>

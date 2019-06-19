@@ -48,18 +48,18 @@
         <property name="dataSource" ref="dataSource"/>
         <!-- 当mybatis的xml文件和mapper接口不在相同包下时，需要用mapperLocations属性指定xml文件的路径.
              *是个通配符，代表所有的文件，**代表所有目录下 -->
-        <property name="mapperLocations" value="classpath:com/mg/dao/mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:com/bwy/dao/mapper/*.xml"/>
     </bean>
 
     <!-- 配置mapper自动扫描 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 这里会重复扫描，dao层的接口实现类不能加@Repository注解 -->
-        <property name="basePackage" value="com.mg.dao"/>
+        <property name="basePackage" value="com.bwy.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <!-- 注解扫描 -->
-    <context:component-scan base-package="com.mg">
+    <context:component-scan base-package="com.bwy">
         <!-- 排除controller层的注解扫描，这是第二步，第一步要在web.xml中加入监听器 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>

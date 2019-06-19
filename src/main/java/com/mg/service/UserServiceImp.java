@@ -1,7 +1,6 @@
 package com.mg.service;
 
-import com.mg.dao.UserMapper;
-import com.mg.model.User;
+import com.mg.utils.SystemCurrentTimeUtil;
 import com.mg.utils.UuidUtil;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +15,10 @@ public class UserServiceImp implements UserService {
     @Override
     public int register(User record) {
         record.setUserId(UuidUtil.getUserId());
+
+        SystemCurrentTimeUtil.getCurrentDate();
+
+
         int result = userMapper.insert(record);
         return result;
     }

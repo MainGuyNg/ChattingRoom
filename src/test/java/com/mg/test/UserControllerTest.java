@@ -1,9 +1,7 @@
 package com.mg.test;
 
 import com.alibaba.fastjson.JSON;
-import com.mg.BaseTest;
 import com.mg.core.MvcObject;
-import com.mg.model.User;
 import com.mg.service.UserService;
 import org.junit.Test;
 
@@ -15,7 +13,7 @@ public class UserControllerTest extends BaseTest {
     @Resource
     UserService userService;
 
-    User user = new User("bns4597", "MainGuy", "MAINGUY4597");
+    User user = new User();
 
     @Test
     public void test() {
