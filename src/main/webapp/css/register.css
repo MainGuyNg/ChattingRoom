@@ -1,0 +1,56 @@
+#register_all {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    border: 3px solid hotpink;
+}
+
+#register_div_top {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+
+#register_div_top font {
+    font-size: 30px;
+}
+
+#register_div_middle {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+}
+
+#register_div_middle_left {
+    width: 100px;
+    height: auto;
+    float: left;
+}
+
+#register_div_middle_right {
+    width: 200px;
+    height: auto;
+    float: left;
+}
+
+.register_div_middle_left_content {
+    height: 25px;
+    text-align: right;
+}
+
+.register_div_middle_right_content {
+    height: 25px;
+}
+
+#register_div_bottom {
+    width: 100%;
+    text-align: center;
+}
+
+#register_div_bottom_content{
+    width: 160px;
+    margin: auto;
+}
