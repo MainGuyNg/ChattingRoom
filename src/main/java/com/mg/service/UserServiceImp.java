@@ -28,7 +28,6 @@ public class UserServiceImp implements UserService {
         //查询用户是否已存在，如果已存在，queryUser!=null
         User queryUser = userMapper.selectUserByAccountNumber(thisAccountNumber);
         if(queryUser!=null){
-            System.out.println("用户："+queryUser.getAccountNumber()+"已存在");
             return 0;
         }else {
             int result=userMapper.insertSelective(record);
