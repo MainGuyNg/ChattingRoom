@@ -17,6 +17,6 @@
     <c:forEach items="${resultMap}" var="entry">
         <font>${entry.value.msg}</font>
     </c:forEach>
-<a href="${ctx}/user/personal_info">返回</a>
+<a href="${ctx}/user/personal_info">返回个人中心</a>
 </body>
 </html>

@@ -6,9 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9b7635-9779-4d28-b091-67056c72aa39" name="Default Changelist" comment="rng">
+    <list default="true" id="2d9b7635-9779-4d28-b091-67056c72aa39" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChattingRoom.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/modify_result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/modify_result.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,16 +55,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/modify_result.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            <state relative-caret-position="361">
+              <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chattingroom.sql">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -247,6 +247,31 @@
               <item name="ChattingRoom" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChattingRoom" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ChattingRoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChattingRoom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChattingRoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChattingRoom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChattingRoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChattingRoom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ChattingRoom" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ChattingRoom" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -271,22 +296,22 @@
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Workspace\ChattingRoom\src\main\webapp\css" />
-      <recent name="F:\Workspace\ChattingRoom\src\main\webapp\js" />
-      <recent name="F:\Workspace\ChattingRoom\src\main\java\com\mg" />
-      <recent name="F:\Workspace\ChattingRoom\src\main\java\com\mg\model" />
-      <recent name="F:\Workspace\ChattingRoom\src\main\java\com\mg\dao" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Workspace\ChattingRoom\src\main\webapp\resources\img" />
       <recent name="F:\Workspace\ChattingRoom\src\main\webapp\resources" />
       <recent name="F:\Workspace\ChattingRoom\src\main\java\com\bwy\dao\mapper" />
       <recent name="F:\Workspace\ChattingRoom\src\main\webapp" />
       <recent name="F:\Workspace\ChattingRoom\src\main\webapp\WEB-INF" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Workspace\ChattingRoom" />
+      <recent name="F:\Workspace\ChattingRoom\src\main\webapp\css" />
+      <recent name="F:\Workspace\ChattingRoom\src\main\webapp\js" />
+      <recent name="F:\Workspace\ChattingRoom\src\main\java\com\mg" />
+      <recent name="F:\Workspace\ChattingRoom\src\main\java\com\mg\model" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -487,7 +512,7 @@
       <workItem from="1561704468269" duration="13145000" />
       <workItem from="1561718597808" duration="1194000" />
       <workItem from="1562035259365" duration="24787000" />
-      <workItem from="1562119808238" duration="168000" />
+      <workItem from="1562119808238" duration="375000" />
     </task>
     <task id="LOCAL-00001" summary="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;10.新增webapp文件夹内的img文件夹的静态资源放行&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能">
       <created>1558603979962</created>
@@ -573,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562066080055</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="新增注册功能，登录功能完善。&#10;新增个人中心，可对个人信息进行修改编辑&#10;新增修改密码功能">
+      <created>1562120120120</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1562120120120</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -609,7 +641,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161937000" />
+    <option name="totallyTimeSpent" value="162097000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -621,7 +653,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4951613" visible="true" weight="0.3022388" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -646,7 +679,7 @@
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49946696" weight="0.32925472" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="15" weight="0.32925472" />
+      <window_info anchor="bottom" id="Version Control" order="15" visible="true" weight="0.32925472" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -664,6 +697,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能" />
     <MESSAGE value="1.修复退出登录没有跳转到login页面的bug&#10;2.现在退出登录会移除session&#10;3.增加session的有效时间&#10;4.修复接收人不存在的时候也能正常发送消息的bug&#10;5.修复可以发送空消息的bug，现在消息栏必须有内容才能发起请求&#10;6.修复登录时可以不在前端页面填写用户名然后正常登陆的bug（后台仍然未做判断）&#10;7.新增密码功能（未添加数据库）&#10;8.现在发起请求变成使用post方式&#10;9.现在做登陆、注销操作时，后台会打印操作时间与操作的用户（后期会添加log日志）&#10;10.新增webapp文件夹内的img文件夹的静态资源放行&#10;近期规划：&#10;1 添加数据库&#10;2 添加注册功能" />
@@ -671,7 +714,8 @@
     <MESSAGE value="配置ssm框架，引入mysql数据库，配置mybatis。&#10;在云服务器上已部署mysql数据库。&#10;ssm+websocket整合。" />
     <MESSAGE value="mybatis-generator自动生成表的XML文件和mapper文件，自动生成实体类" />
     <MESSAGE value="rng" />
-    <option name="LAST_COMMIT_MESSAGE" value="rng" />
+    <MESSAGE value="新增注册功能，登录功能完善。&#10;新增个人中心，可对个人信息进行修改编辑&#10;新增修改密码功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增注册功能，登录功能完善。&#10;新增个人中心，可对个人信息进行修改编辑&#10;新增修改密码功能" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
@@ -1021,8 +1065,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/modify_result.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        <state relative-caret-position="361">
+          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
         </state>
       </provider>
     </entry>
