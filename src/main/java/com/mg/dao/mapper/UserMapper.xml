@@ -232,4 +232,11 @@
         password = #{newPassword,jdbcType=VARCHAR}
         where accountNumber = #{accountNumber,jdbcType=VARCHAR}
     </update>
+
+    <update id="updateUserHeadIcon" parameterType="java.lang.String">
+        update user
+        set
+        head_url = #{headUrl,jdbcType=VARCHAR}
+        where account_number = #{accountNumber,jdbcType=VARCHAR}
+    </update>
 </mapper>

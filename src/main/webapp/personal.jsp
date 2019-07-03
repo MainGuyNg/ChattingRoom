@@ -26,11 +26,11 @@
                     <img src="${ctx}/img/1.jpg" id="headUrl"/>
                 </c:if>
                 <c:if test="${entry.value.headUrl !=null}">
-                    <img src="${entry.value.headUrl}" id="headUrl"/>
+                    <img src="${ctx}/${entry.value.headUrl}" id="headUrl"/>
                 </c:if>
             </div>
             <div>
-                <a href="#">修改头像</a>
+                <a href="${ctx}/fileupload_test.jsp">修改头像</a>
             </div>
         </div>
         <div id="personal_div_middle">

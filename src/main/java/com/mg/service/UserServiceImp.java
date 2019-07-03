@@ -83,4 +83,11 @@ public class UserServiceImp implements UserService {
             return result;
         }
     }
+
+    @Override
+    public int updateUserHeadIcon(String accountNumber, String headUrl) {
+        headUrl = headUrl.substring(headUrl.lastIndexOf("\\head_icon_img"));
+        int result = userMapper.updateUserHeadIcon(accountNumber,headUrl);
+        return result;
+    }
 }

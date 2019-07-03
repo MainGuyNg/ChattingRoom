@@ -10,4 +10,5 @@ public interface UserService {
     int updateLoginTime(String accountNumber);
     User selectUserToShowPersonalInfo(String accountNumber);
     int modifyPassword(String accountNumber,String oldPassword,String newPassword);
+    int updateUserHeadIcon(String accountNumber,String headUrl);
 }

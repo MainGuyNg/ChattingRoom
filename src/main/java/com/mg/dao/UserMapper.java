@@ -26,4 +26,5 @@ public interface UserMapper {
 
     int modifyPassword(@Param("accountNumber") String accountNumber, @Param("newPassword") String newPassword);
 
+    int updateUserHeadIcon(@Param("accountNumber") String accountNumber,@Param("headUrl") String headUrl);
 }
