@@ -17,19 +17,28 @@
     $(function () {
         $("#modify_button").click(function () {
             var nickname = $("#nickname").val();
-            var sex = $("input[name='sex']").val();
+            var sex = $("input[name='sex']:checked").val();
             var birthday = $("#birthday").val();
-            birthday = new Date(birthday);
             var location = $("#location").val();
             var telephone = $("#telephone").val();
 
-            var user = {
-                nickname: nickname,
-                sex: sex,
-                birthday: birthday,
-                location: location,
-                telephone: telephone
-            };
+            if (birthday == null || birthday.trim() == "") {
+                var user = {
+                    nickname: nickname,
+                    sex: sex,
+                    location: location,
+                    telephone: telephone
+                };
+            } else {
+                birthday = new Date(birthday);
+                var user = {
+                    nickname: nickname,
+                    sex: sex,
+                    birthday: birthday,
+                    location: location,
+                    telephone: telephone
+                };
+            }
             console.info(user);
 
             $.ajax({
@@ -77,20 +86,20 @@
 
                 <div id="modify_div_middle_right">
                     <div class="modify_div_middle_right_content">
-                        <input type="text" id="nickname" required="required" maxlength="16" placeholder="请输入昵称"/>
+                        <input type="text" id="nickname" maxlength="16" placeholder="请输入昵称"/>
                     </div>
                     <div class="modify_div_middle_right_content">
-                        <input type="radio" name="sex" value="0"/>男
-                        <input type="radio" name="sex" value="1"/>女
+                        <input type="radio" name="sex" value="1"/>男
+                        <input type="radio" name="sex" value="2"/>女
                     </div>
                     <div class="modify_div_middle_right_content">
-                        <input type="date" id="birthday" required="required"/>
+                        <input type="date" id="birthday"/>
                     </div>
                     <div class="modify_div_middle_right_content">
-                        <input type="text" id="location" required="required" maxlength="200" placeholder="请输入地址"/>
+                        <input type="text" id="location" maxlength="200" placeholder="请输入地址"/>
                     </div>
                     <div class="modify_div_middle_right_content">
-                        <input type="text" id="telephone" required="required" maxlength="11" placeholder="请输入手机号"
+                        <input type="text" id="telephone" maxlength="11" placeholder="请输入手机号"
                                oninput="value=value.replace(/[^\d]/g,'')"/>
                     </div>
                 </div>

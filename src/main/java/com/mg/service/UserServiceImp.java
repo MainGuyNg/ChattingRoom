@@ -19,9 +19,7 @@ public class UserServiceImp implements UserService {
     public int register(User record) {
         record.setUserId(UuidUtil.getUserId());
 
-        Date date = new Date(SystemCurrentTimeUtil.getCurrentDate());
-        record.setCreateTime(date);
-        record.setModifyTime(date);
+        record.setCreateTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
 
         String thisAccountNumber = record.getAccountNumber();
 
@@ -51,8 +49,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public int modifyPersonalInfo(User record) {
-        Date date = new Date(SystemCurrentTimeUtil.getCurrentDate());
-        record.setModifyTime(date);
+        record.setModifyTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
         int result = userMapper.modifyPersonalInfoByAccountNumber(record);
         return result;
     }
@@ -71,7 +68,11 @@ public class UserServiceImp implements UserService {
         int result = 0;
         if(user!=null){
             if(user.getPassword().equals(oldPassword)){
-                result = userMapper.modifyPassword(accountNumber,newPassword);
+                user = new User();
+                user.setAccountNumber(accountNumber);
+                user.setPassword(newPassword);
+                user.setModifyTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
+                result = userMapper.modifyPassword(user);
                 return result;
             }else {
                 result = 102;
@@ -86,7 +87,11 @@ public class UserServiceImp implements UserService {
     @Override
     public int updateUserHeadIcon(String accountNumber, String headUrl) {
         headUrl = headUrl.substring(headUrl.lastIndexOf("\\head_icon_img"));
-        int result = userMapper.updateUserHeadIcon(accountNumber,headUrl);
+        User user = new User();
+        user.setAccountNumber(accountNumber);
+        user.setHeadUrl(headUrl);
+        user.setModifyTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
+        int result = userMapper.updateUserHeadIcon(user);
         return result;
     }
 }

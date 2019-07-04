@@ -37,6 +37,7 @@ public class UserController {
     @RequestMapping("/register")
     @ResponseBody
     public MvcObject register(User user) {
+        System.out.println(user.getBirthday());
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>(16);
         int result = userService.register(user);
@@ -50,8 +51,9 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String login(HttpServletRequest request, HttpServletResponse response) {
         MvcObject mvcObject = null;
+        Map<String,Object> resultMap = new HashMap<>(16);
         String requestAccountNumber = request.getParameter("accountNumber");
         String requestPassword = request.getParameter("password");
         User user = userService.login(requestAccountNumber);
@@ -62,21 +64,22 @@ public class UserController {
                 if (loginResult != 0) {
                     HttpSession session = request.getSession();
                     session.setAttribute("ACCOUNTNUMBER", requestAccountNumber); //一般直接保存user实体
-                    session.setAttribute("NICKNAME", user.getNickname());
-                    session.setAttribute("HEADURL",user.getHeadUrl());
                     session.setMaxInactiveInterval(30 * 60);
-                    mvcObject = new MvcObject("登录成功","200");
-                    return "send";
+                    resultMap.put("nickname",user.getNickname());
+                    resultMap.put("headUrl",user.getHeadUrl());
+                    mvcObject = new MvcObject("登录成功", "200",resultMap);
+                    request.setAttribute("mvcObject",mvcObject);
+                    return "redirect:../send.jsp";
                 } else {
-                    mvcObject = new MvcObject("系统异常","103");
+                    mvcObject = new MvcObject("系统异常", "103");
                     return "redirect:../login.jsp";
                 }
             } else {
-                mvcObject = new MvcObject("密码错误","100");
+                mvcObject = new MvcObject("密码错误", "100");
                 return "redirect:../login.jsp";
             }
         } else {
-            mvcObject = new MvcObject("没有该用户！！","102");
+            mvcObject = new MvcObject("没有该用户！！", "102");
             return "redirect:../login.jsp";
         }
     }
@@ -100,9 +103,11 @@ public class UserController {
     @ResponseBody
     public MvcObject modifyPersonalInfo(User user, HttpServletRequest request) {
         MvcObject mvcObject = null;
+        System.out.println(user.getBirthday());
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
         user.setAccountNumber(requestAccountNumber);
+        System.out.println("修改资料：" + user.toString());
         int result = userService.modifyPersonalInfo(user);
         if (result == 0) {
             mvcObject = new MvcObject("更新个人资料失败", "100");
@@ -118,7 +123,6 @@ public class UserController {
         MvcObject mvcObject = null;
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
-
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
         int result = userService.modifyPassword(requestAccountNumber, oldPassword, newPassword);
@@ -141,54 +145,35 @@ public class UserController {
     @ResponseBody
     public MvcObject uploadHeadIcon(@RequestParam("headUrl") CommonsMultipartFile multipartFile, HttpServletRequest request) {
         MvcObject mvcObject = null;
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
 
         String sourcePath = request.getServletContext().getRealPath("/head_icon_img");
         FileItem fileItem = multipartFile.getFileItem();
         String fileName = fileItem.getName();
-        HttpSession session = request.getSession();
-        String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
-        sourcePath = FileUploadUtil.getHeadIconPath(sourcePath, fileName, requestAccountNumber);
-        try {
-            inputStream = fileItem.getInputStream();
-            outputStream = new FileOutputStream(new File(sourcePath), false);
+        if (fileName != null && !("".equals(fileName))) {
+            HttpSession session = request.getSession();
+            String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
+            sourcePath = FileUploadUtil.getHeadIconPath(sourcePath, fileName, requestAccountNumber);
 
-            byte[] buf = new byte[5 * 1024];
-            int len;
-            while ((len = inputStream.read(buf)) != -1) {
-                outputStream.write(buf,0,len);
-                outputStream.flush();
-            }
-
-            int result = userService.updateUserHeadIcon(requestAccountNumber,sourcePath);
-            if(result==0){
-                mvcObject = new MvcObject("上传失败","200");
-            }else if(result==1) {
-                mvcObject = new MvcObject("上传成功", "100");
-            }
-        } catch (IOException e) {
-            mvcObject = new MvcObject("系统异常","202");
-            e.printStackTrace();
-        } finally {
             try {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (outputStream != null) {
-                    outputStream.close();
+                FileUploadUtil.uploadHeadIcon(fileItem.getInputStream(), sourcePath);
+                int result = userService.updateUserHeadIcon(requestAccountNumber, sourcePath);
+                if (result == 0) {
+                    mvcObject = new MvcObject("上传失败", "200");
+                } else if (result == 1) {
+                    mvcObject = new MvcObject("上传成功", "100");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                mvcObject = new MvcObject("系统异常","202");
+                mvcObject = new MvcObject("系统异常", "202");
             }
-
+        } else {
+            mvcObject = new MvcObject("上传文件名为空", "204");
         }
         return mvcObject;
     }
 
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("ACCOUNTNUMBER");
         System.out.println(this.getCurrentTime() + "  用户 " + username + " 访问注销接口");
@@ -199,6 +184,4 @@ public class UserController {
     public static String getCurrentTime() {
         return SystemCurrentTimeUtil.getCurrentTime();
     }
-
-
 }

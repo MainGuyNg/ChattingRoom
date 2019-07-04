@@ -15,7 +15,7 @@
                 return;
             } else {
                 var accountNumber = $("#accountNumber").val();
-                var sex = $("input[name='sex']").val();
+                var sex = $("input[name='sex']:checked").val();
                 var nickname = $("#nickname").val();
                 var birthday = $("#birthday").val();
                 birthday = new Date(birthday);
@@ -97,8 +97,8 @@
                         <input type="text" id="nickname" required="required" maxlength="16" placeholder="请输入昵称"/>
                     </div>
                     <div class="register_div_middle_right_content">
-                        <input type="radio" name="sex" value="0"/>男
-                        <input type="radio" name="sex" value="1"/>女
+                        <input type="radio" name="sex" value="1"/>男
+                        <input type="radio" name="sex" value="2"/>女
                     </div>
                     <div class="register_div_middle_right_content">
                         <input type="date" id="birthday" required="required"/>

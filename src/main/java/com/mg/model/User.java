@@ -13,7 +13,7 @@ public class User {
 
     private String telephone;
 
-    private Integer sex;
+    private String sex;
 
     private String location;
 
@@ -67,11 +67,11 @@ public class User {
         this.telephone = telephone == null ? null : telephone.trim();
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

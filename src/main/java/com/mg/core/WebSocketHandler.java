@@ -14,7 +14,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     private static final Map<String, WebSocketSession> userMap;  //Map来存储WebSocketSession，key用USER_ID 即在线用户列表
 
     //用户标识
-    private static final String USER_ID = "WEBSOCKET_USERID";   //对应监听器从的key
+    private static final String USER_ID = "WEBSOCKET_USERID";   //对应监听器中的key
 
 
     static {

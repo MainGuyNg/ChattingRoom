@@ -30,7 +30,7 @@
                 </c:if>
             </div>
             <div>
-                <a href="${ctx}/fileupload_test.jsp">修改头像</a>
+                <a href="${ctx}/modify_headIcon.jsp">修改头像</a>
             </div>
         </div>
         <div id="personal_div_middle">
@@ -53,10 +53,10 @@
                             ${entry.value.nickname}
                     </div>
                     <div class="personal_div_middle_right_content">
-                        <c:if test="${entry.value.sex ==0}">
+                        <c:if test="${entry.value.sex ==1}">
                             男
                         </c:if>
-                        <c:if test="${entry.value.sex==1}">
+                        <c:if test="${entry.value.sex==2}">
                             女
                         </c:if>
                     </div>
@@ -67,7 +67,7 @@
                             ${entry.value.location}
                     </div>
                     <div class="personal_div_middle_right_content">
-                        <fmt:formatDate value="${entry.value.birthday}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        <fmt:formatDate value="${entry.value.birthday}" pattern="yyyy-MM-dd"/>
                     </div>
                     <div class="personal_div_middle_right_content">
                         <fmt:formatDate value="${entry.value.loginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
