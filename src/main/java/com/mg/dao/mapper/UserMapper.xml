@@ -174,11 +174,6 @@
   </update>
 
 
-
-
-
-
-
     <select id="selectUserByAccountNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

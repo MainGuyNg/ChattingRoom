@@ -85,8 +85,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public int updateUserHeadIcon(String accountNumber, String headUrl) {
-        headUrl = headUrl.substring(headUrl.lastIndexOf("\\head_icon_img"));
+    public int updateUserHeadIcon(String accountNumber, String headUrl, String relativePath) {
+        //对传入地址进行处理，使其成为相对路径
+        headUrl = headUrl.substring(headUrl.lastIndexOf(relativePath));
         User user = new User();
         user.setAccountNumber(accountNumber);
         user.setHeadUrl(headUrl);
