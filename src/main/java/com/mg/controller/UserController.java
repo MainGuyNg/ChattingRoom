@@ -9,6 +9,7 @@ import com.mg.utils.SystemCurrentTimeUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,29 +35,27 @@ public class UserController {
         return new WebSocketHandler();
     }
 
-    @RequestMapping("/register")
-    @ResponseBody
     /*
      * 注册接口
      * */
+    @RequestMapping("/register")
+    @ResponseBody
     public MvcObject register(User user) {
-        System.out.println(user.getBirthday());
         MvcObject mvcObject = null;
-        Map<String, Object> resultMap = new HashMap<>(16);
+        //注册时，校验账号是否已存在
         int result = userService.register(user);
-        resultMap.put("result", result);
         if (result == 1) {
-            mvcObject = new MvcObject("注册成功", "200", resultMap);
+            mvcObject = new MvcObject("注册成功", "200");
         } else {
-            mvcObject = new MvcObject("注册失败", "100", resultMap);
+            mvcObject = new MvcObject("注册失败", "100");
         }
         return mvcObject;
     }
 
-    @RequestMapping("/login")
     /*
      * 登录方法，通过HttpServletRequest获取登录信息，post方法
      * */
+    @RequestMapping("/login")
     public String login(HttpServletRequest request) {
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>(16);
@@ -71,10 +70,11 @@ public class UserController {
                 if (loginResult != 0) {
                     HttpSession session = request.getSession();
                     session.setAttribute("ACCOUNTNUMBER", requestAccountNumber); //一般直接保存user实体
-                    session.setMaxInactiveInterval(30 * 60);
                     //前端聊天室页面的昵称和头像用的是session域里的数据
                     session.setAttribute("NICKNAME", user.getNickname());
                     session.setAttribute("HEADURL", user.getHeadUrl());
+                    session.setAttribute("USERID",user.getUserId());
+                    session.setMaxInactiveInterval(30 * 60);
                     mvcObject = new MvcObject("登录成功", "200", resultMap);
                     request.setAttribute("mvcObject", mvcObject);
                     return "redirect:../send.jsp";
@@ -89,10 +89,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/personal_info")
     /*
      * 个人中心页面
      * */
+    @RequestMapping("/personal_info")
     public String showPersonalInfo(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
@@ -109,11 +109,11 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/modify")
-    @ResponseBody
     /*
      * 根据session中的账号，修改个人信息
      * */
+    @RequestMapping("/modify")
+    @ResponseBody
     public MvcObject modifyPersonalInfo(User user, HttpServletRequest request) {
         MvcObject mvcObject = null;
         HttpSession session = request.getSession();
@@ -136,8 +136,8 @@ public class UserController {
         return mvcObject;
     }
 
-    @RequestMapping("/modify_password")
     //修改密码
+    @RequestMapping("/modify_password")
     public String modifyPersonalInfo(HttpServletRequest request) {
         MvcObject mvcObject = null;
         HttpSession session = request.getSession();
@@ -161,9 +161,9 @@ public class UserController {
         return "modify_result";
     }
 
+    //上传头像
     @RequestMapping("/uploadHeadIcon")
     @ResponseBody
-    //上传头像
     public MvcObject uploadHeadIcon(@RequestParam("headUrl") CommonsMultipartFile multipartFile, HttpServletRequest request) {
         MvcObject mvcObject = null;
         //声明常量，head_icon_img是在该项目工程下的保存头像的文件夹，IO流也会往里面写文件
@@ -180,23 +180,27 @@ public class UserController {
                 if (session != null) {
                     //这里将会使用账号名作为文件名保存，因为账号名在注册时会校验是否有相同的
                     String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
-                    //工具类进行路径拼接
-                    sourcePath = FileUploadUtil.getHeadIconPath(sourcePath, fileName, requestAccountNumber);
-                    try {
-                        //工具类进行文件读写，传入的参数是FileItem类的InputStream
-                        FileUploadUtil.uploadHeadIcon(fileItem.getInputStream(), sourcePath);
-                        //数据库表中存入头像的相对路径
-                        //在调用该方法的时候，service层会对sorcePath进行相对应的处理，使其变成相对路径
-                        int result = userService.updateUserHeadIcon(requestAccountNumber, sourcePath, RELATIVEPATH);
-                        if (result == 0) {
-                            mvcObject = new MvcObject("上传失败", "200");
-                        } else if (result == 1) {
-                            mvcObject = new MvcObject("上传成功", "100");
-                            //此处重置session域里的头像地址，放入的是相对路径
-                            session.setAttribute("HEADURL", RELATIVEPATH + sourcePath.substring(sourcePath.lastIndexOf("\\")));
+                    if (requestAccountNumber != null && !("".equals(requestAccountNumber))) {
+                        //工具类进行路径拼接
+                        sourcePath = FileUploadUtil.getHeadIconPath(sourcePath, fileName, requestAccountNumber);
+                        try {
+                            //工具类进行文件读写，传入的参数是FileItem类的InputStream
+                            FileUploadUtil.uploadHeadIcon(fileItem.getInputStream(), sourcePath);
+                            //数据库表中存入头像的相对路径
+                            //在调用该方法的时候，service层会对sorcePath进行相对应的处理，使其变成相对路径
+                            int result = userService.updateUserHeadIcon(requestAccountNumber, sourcePath, RELATIVEPATH);
+                            if (result == 0) {
+                                mvcObject = new MvcObject("上传失败", "200");
+                            } else if (result == 1) {
+                                mvcObject = new MvcObject("上传成功", "100");
+                                //此处重置session域里的头像地址，放入的是相对路径
+                                session.setAttribute("HEADURL", RELATIVEPATH + sourcePath.substring(sourcePath.lastIndexOf("\\")));
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            mvcObject = new MvcObject("系统异常", "202");
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    }else {
                         mvcObject = new MvcObject("系统异常", "202");
                     }
                 }

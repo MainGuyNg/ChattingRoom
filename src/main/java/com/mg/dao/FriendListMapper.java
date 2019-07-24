@@ -1,6 +1,9 @@
 package com.mg.dao;
 
 import com.mg.model.FriendList;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FriendListMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface FriendListMapper {
     int updateByPrimaryKeySelective(FriendList record);
 
     int updateByPrimaryKey(FriendList record);
+
+    List queryFriendListByUserId(@Param("userId") String userId);
 }

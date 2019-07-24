@@ -4,6 +4,7 @@ import com.mg.model.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(String userId);
@@ -27,4 +28,10 @@ public interface UserMapper {
     int modifyPassword(User record);
 
     int updateUserHeadIcon(User record);
+
+    List queryUserByNickname(String nickname);
+
+    //这个方法在查询时不封装password字段
+    User queruUserByAccountNumber(String AccountNumber);
+
 }

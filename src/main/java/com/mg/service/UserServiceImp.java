@@ -15,8 +15,11 @@ public class UserServiceImp implements UserService {
     @Resource
     UserMapper userMapper;
 
+    @Resource
+    FriendListService friendListService;
+
     @Override
-    public int register(User record) {
+    public Integer register(User record) {
         record.setUserId(UuidUtil.getUserId());
 
         record.setCreateTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
@@ -25,10 +28,14 @@ public class UserServiceImp implements UserService {
 
         //查询用户是否已存在，如果已存在，queryUser!=null
         User queryUser = userMapper.selectUserByAccountNumber(thisAccountNumber);
-        if(queryUser!=null){
+        if (queryUser != null) {
             return 0;
-        }else {
-            int result=userMapper.insertSelective(record);
+        } else {
+            int result = userMapper.insertSelective(record);
+            int addFriendListResult = friendListService.addDefaultFriendListWhenUserRegister(record.getUserId());
+            if (addFriendListResult == 0) {
+                result = 0;
+            }
             return result;
         }
     }
@@ -40,7 +47,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public int updateLoginTime(String accountNumber){
+    public Integer updateLoginTime(String accountNumber) {
         User user = new User();
         user.setAccountNumber(accountNumber);
         user.setLoginTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
@@ -48,7 +55,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public int modifyPersonalInfo(User record) {
+    public Integer modifyPersonalInfo(User record) {
         record.setModifyTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
         int result = userMapper.modifyPersonalInfoByAccountNumber(record);
         return result;
@@ -63,29 +70,29 @@ public class UserServiceImp implements UserService {
 
     @Override
     //result   0：更新0条数据  1：更新一条数据  102：密码不一致  101：查不到用户数据
-    public int modifyPassword(String accountNumber, String oldPassword, String newPassword) {
+    public Integer modifyPassword(String accountNumber, String oldPassword, String newPassword) {
         User user = userMapper.selectUserByAccountNumber(accountNumber);
         int result = 0;
-        if(user!=null){
-            if(user.getPassword().equals(oldPassword)){
+        if (user != null) {
+            if (user.getPassword().equals(oldPassword)) {
                 user = new User();
                 user.setAccountNumber(accountNumber);
                 user.setPassword(newPassword);
                 user.setModifyTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
                 result = userMapper.modifyPassword(user);
                 return result;
-            }else {
+            } else {
                 result = 102;
                 return result;
             }
-        }else {
+        } else {
             result = 101;
             return result;
         }
     }
 
     @Override
-    public int updateUserHeadIcon(String accountNumber, String headUrl, String relativePath) {
+    public Integer updateUserHeadIcon(String accountNumber, String headUrl, String relativePath) {
         //对传入地址进行处理，使其成为相对路径
         headUrl = headUrl.substring(headUrl.lastIndexOf(relativePath));
         User user = new User();

@@ -4,17 +4,17 @@ package com.mg.service;
 import com.mg.model.User;
 
 public interface UserService {
-    int register(User record);
+    Integer register(User record);
 
     User login(String accountNumber);
 
-    int modifyPersonalInfo(User record);
+    Integer modifyPersonalInfo(User record);
 
-    int updateLoginTime(String accountNumber);
+    Integer updateLoginTime(String accountNumber);
 
     User selectUserToShowPersonalInfo(String accountNumber);
 
-    int modifyPassword(String accountNumber, String oldPassword, String newPassword);
+    Integer modifyPassword(String accountNumber, String oldPassword, String newPassword);
 
-    int updateUserHeadIcon(String accountNumber, String headUrl, String relativePath);
+    Integer updateUserHeadIcon(String accountNumber, String headUrl, String relativePath);
 }

@@ -19,6 +19,10 @@
     user_id , account_number, nickname, password, telephone, sex, location, birthday, create_time,
     modify_time, login_time, head_url
   </sql>
+    <sql id="Base_Column_List_Without_Password">
+    user_id , account_number, nickname, telephone, sex, location, birthday, create_time,
+    modify_time, login_time, head_url
+  </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
@@ -226,4 +230,19 @@
         modify_time = #{modifyTime,jdbcType=TIMESTAMP}
         where account_number = #{accountNumber,jdbcType=VARCHAR}
     </update>
+
+    <select id="queryUserByNickname" parameterType="java.lang.String" resultMap="BaseResultMap"
+            resultType="java.util.List">
+        select
+        <include refid="Base_Column_List_Without_Password"/>
+        from user
+        where nickname=#{nickname,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queruUserByAccountNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_Without_Password"/>
+        from user
+        where account_number=#{accountNumber,jdbcType=VARCHAR}
+    </select>
 </mapper>

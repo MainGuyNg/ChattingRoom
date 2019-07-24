@@ -16,15 +16,12 @@
         var websocket = null;
         if ('WebSocket' in window) {
             console.info("is websocket");
-            //websocket = new WebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
             websocket = new WebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer")
         } else if ('MozWebSocket' in window) {
             console.info("is mozwebsocket");
-            //websocket = new MozWebSocket("ws://193.112.8.102:8080/ChattingRoom/websocket/socketServer");
             websocket = new MozWebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer");
         } else {
             console.info("is sockJs");
-            //websocket = new SockJS("http://193.112.8.102:8080/ChattingRoom/sockjs/socketServer");
             websocket = new SockJS("http://localhost:8080/ChattingRoom/sockjs/socketServer");
         }
         websocket.onopen = onOpen;
@@ -99,6 +96,7 @@
 <body>
 <font style="font-size: 30px;">你好,${sessionScope.NICKNAME}</font>
 <a href="${ctx}/user/personal_info">个人中心</a>
+<a href="${ctx}/relation/queryFriendListByUserId">好友列表</a>
 <a href="${ctx}/user/logout" onclick="websocketClose()">退出聊天室</a>
 <br/><br/>
 

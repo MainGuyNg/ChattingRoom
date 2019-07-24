@@ -11,7 +11,7 @@
     id, user_id, list_id, list_name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from friend_list
     where id = #{id,jdbcType=INTEGER}
@@ -20,13 +20,13 @@
     delete from friend_list
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.mg.model.FriendList" >
+  <insert id="insert" parameterType="com.mg.model.FriendList"  useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
     insert into friend_list (id, user_id, list_id, 
       list_name)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{listId,jdbcType=VARCHAR}, 
       #{listName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mg.model.FriendList" >
+  <insert id="insertSelective" parameterType="com.mg.model.FriendList"  useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
     insert into friend_list
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -79,4 +79,13 @@
       list_name = #{listName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryFriendListByUserId" parameterType="java.lang.String" resultType="java.util.List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    friend_list
+    where
+    user_id=#{userId,jdbcType=VARCHAR}
+  </select>
 </mapper>

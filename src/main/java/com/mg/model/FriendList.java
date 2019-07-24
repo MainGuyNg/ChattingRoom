@@ -9,6 +9,9 @@ public class FriendList {
 
     private String listName;
 
+    //不打算往数据库添加这个字段，每次查询好友分组时去数据库查一边有多少数据就算了。。。
+    private Integer friendCount;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +42,24 @@ public class FriendList {
 
     public void setListName(String listName) {
         this.listName = listName == null ? null : listName.trim();
+    }
+
+    public Integer getFriendCount() {
+        return friendCount;
+    }
+
+    public void setFriendCount(Integer friendCount) {
+        this.friendCount = friendCount;
+    }
+
+    @Override
+    public String toString() {
+        return "FriendList{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", listId='" + listId + '\'' +
+                ", listName='" + listName + '\'' +
+                ", friendCount=" + friendCount +
+                '}';
     }
 }

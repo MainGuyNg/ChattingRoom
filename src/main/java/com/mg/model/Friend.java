@@ -2,7 +2,7 @@ package com.mg.model;
 
 import java.util.Date;
 
-public class FriendListContent {
+public class Friend {
     private Integer id;
 
     private String userId;
