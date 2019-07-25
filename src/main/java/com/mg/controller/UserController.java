@@ -9,11 +9,11 @@ import com.mg.utils.SystemCurrentTimeUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +73,7 @@ public class UserController {
                     //前端聊天室页面的昵称和头像用的是session域里的数据
                     session.setAttribute("NICKNAME", user.getNickname());
                     session.setAttribute("HEADURL", user.getHeadUrl());
-                    session.setAttribute("USERID",user.getUserId());
+                    session.setAttribute("USERID", user.getUserId());
                     session.setMaxInactiveInterval(30 * 60);
                     mvcObject = new MvcObject("登录成功", "200", resultMap);
                     request.setAttribute("mvcObject", mvcObject);
@@ -93,20 +93,27 @@ public class UserController {
      * 个人中心页面
      * */
     @RequestMapping("/personal_info")
-    public String showPersonalInfo(HttpServletRequest request) {
+    public ModelAndView showPersonalInfo(HttpServletRequest request) {
+        MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
+        Map<String, Object> resultMap = new HashMap<>();
+
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
-        //查询个人信息，并且封装到user类中
-        User user = userService.selectUserToShowPersonalInfo(requestAccountNumber);
-        if (user != null) {
-            Map<String, Object> map = new HashMap<>(16);
-            map.put("user", user);
-            //request域放入封装了user类的map响应给前端，前端再遍历map
-            request.setAttribute("userMap", map);
-            return "personal";
+        if (requestAccountNumber != null && !("".equals(requestAccountNumber))) {
+            //查询个人信息，并且封装到user类中
+            User user = userService.selectUserToShowPersonalInfo(requestAccountNumber);
+            if (user != null) {
+                resultMap.put("user", user);
+                mvcObject = new MvcObject("查询成功", "100", resultMap);
+            } else {
+                mvcObject = new MvcObject("查询失败", "200");
+            }
         } else {
-            return "redirect:../send.jsp";
+            mvcObject = new MvcObject("系统异常", "202");
         }
+        modelAndView = new ModelAndView("forward:../personal.jsp", "mvcObject", mvcObject);
+        return modelAndView;
     }
 
     /*
@@ -200,7 +207,7 @@ public class UserController {
                             e.printStackTrace();
                             mvcObject = new MvcObject("系统异常", "202");
                         }
-                    }else {
+                    } else {
                         mvcObject = new MvcObject("系统异常", "202");
                     }
                 }

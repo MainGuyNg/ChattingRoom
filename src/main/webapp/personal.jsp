@@ -18,15 +18,14 @@
 </head>
 <body>
 <div id="personal_all">
-    <c:forEach items="${userMap}" var="entry">
         <div id="personal_div_top">
             <font>个人中心</font>
             <div>
-                <c:if test="${entry.value.headUrl == null}">
+                <c:if test="${mvcObject.map.user.headUrl == null}">
                     <img src="${ctx}/img/1.jpg" id="headUrl"/>
                 </c:if>
-                <c:if test="${entry.value.headUrl !=null}">
-                    <img src="${ctx}/${entry.value.headUrl}" id="headUrl"/>
+                <c:if test="${mvcObject.map.user.headUrl !=null}">
+                    <img src="${ctx}/${mvcObject.map.user.headUrl}" id="headUrl"/>
                 </c:if>
             </div>
             <div>
@@ -47,30 +46,30 @@
 
                 <div id="personal_div_middle_right">
                     <div class="personal_div_middle_right_content">
-                            ${entry.value.accountNumber}
+                            ${mvcObject.map.user.accountNumber}
                     </div>
                     <div class="personal_div_middle_right_content">
-                            ${entry.value.nickname}
+                            ${mvcObject.map.user.nickname}
                     </div>
                     <div class="personal_div_middle_right_content">
-                        <c:if test="${entry.value.sex ==1}">
+                        <c:if test="${mvcObject.map.user.sex ==1}">
                             男
                         </c:if>
-                        <c:if test="${entry.value.sex==2}">
+                        <c:if test="${mvcObject.map.user.sex==2}">
                             女
                         </c:if>
                     </div>
                     <div class="personal_div_middle_right_content">
-                            ${entry.value.telephone}
+                            ${mvcObject.map.user.telephone}
                     </div>
                     <div class="personal_div_middle_right_content">
-                            ${entry.value.location}
+                            ${mvcObject.map.user.location}
                     </div>
                     <div class="personal_div_middle_right_content">
-                        <fmt:formatDate value="${entry.value.birthday}" pattern="yyyy-MM-dd"/>
+                        <fmt:formatDate value="${mvcObject.map.user.birthday}" pattern="yyyy-MM-dd"/>
                     </div>
                     <div class="personal_div_middle_right_content">
-                        <fmt:formatDate value="${entry.value.loginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        <fmt:formatDate value="${mvcObject.map.user.loginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                     </div>
                 </div>
             </div>
@@ -82,7 +81,6 @@
                 <a href="${ctx}/send.jsp">返回</a>
             </div>
         </div>
-    </c:forEach>
 </div>
 </body>
 </html>

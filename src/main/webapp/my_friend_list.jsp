@@ -10,11 +10,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
-<link rel="stylesheet" href="${ctx}/css/myFriendList.css" type="text/css"/>
+<link rel="stylesheet" href="${ctx}/css/my_friend_list.css" type="text/css"/>
 <script type="text/javascript" src="${ctx}/js/jquery-3.4.1.min.js"></script>
 <script>
     $(function () {
         var mvcObject = '${mvcObject}';
+        console.info(mvcObject)
         var data = JSON.parse(mvcObject);
         var code = data.code;
         console.info(code + "..." + data.msg);
@@ -59,7 +60,8 @@
                 </div>
                 <div class="friend_list_div_middle_right_content">
                     <form action="${ctx}/relation/queryUserByNickname" method="get">
-                        <input type="text" id="nickname" name="nickname" maxlength="16" placeholder="请输入好友昵称" style="width: 120px;"/>
+                        <input type="text" id="nickname" name="nickname" maxlength="16" placeholder="请输入好友昵称"
+                               style="width: 120px;"/>
                         <input type="submit" value="搜索"/>
                     </form>
                 </div>
@@ -75,7 +77,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

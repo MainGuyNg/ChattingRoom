@@ -32,6 +32,9 @@ public interface UserMapper {
     List queryUserByNickname(String nickname);
 
     //这个方法在查询时不封装password字段
-    User queruUserByAccountNumber(String AccountNumber);
+    User queryUserByAccountNumber(String AccountNumber);
+
+    //这个方法在查询时不封装password字段
+    User queryUserByUserId(String userId);
 
 }

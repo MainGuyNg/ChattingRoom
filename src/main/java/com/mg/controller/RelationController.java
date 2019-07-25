@@ -1,12 +1,14 @@
 package com.mg.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mg.core.MvcObject;
 import com.mg.model.Friend;
 import com.mg.model.FriendList;
 import com.mg.model.User;
 import com.mg.service.FriendListService;
 import com.mg.service.RelationService;
+import com.mg.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,41 +30,51 @@ public class RelationController {
     RelationService relationService;
     @Resource
     FriendListService friendListService;
+    @Resource
+    UserService userService;
 
     //根据昵称模糊查找对象
     @RequestMapping("/queryUserByNickname")
     @ResponseBody
-    public MvcObject queryUserByNickname(HttpServletRequest request) {
+    public ModelAndView queryUserByNickname(HttpServletRequest request) {
+        ModelAndView modelAndView = null;
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>();
+
         String requestNickname = request.getParameter("nickname");
         List<User> resultList = relationService.queryUserByNickname(requestNickname);
+
         int listSize = resultList.size();
-        System.out.println("查询结果：" + resultList.size());
         if (listSize == 0) {
             mvcObject = new MvcObject("查不到此用户", "100");
         } else {
             resultMap.put("userList", resultList);
             mvcObject = new MvcObject("查找成功，共" + listSize + "条数据", "100", resultMap);
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../query_user_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
     //通过注册账号精确查找对象
     @RequestMapping("/queryUserByAccountNumber")
     @ResponseBody
-    public MvcObject queryUserByAccountNumber(HttpServletRequest request) {
+    public ModelAndView queryUserByAccountNumber(HttpServletRequest request) {
+        ModelAndView modelAndView = null;
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>();
+
         String requestAccountNumber = request.getParameter("accountNumber");
         User queryUser = relationService.queryUserByAccountNumber(requestAccountNumber);
         if (queryUser == null) {
             mvcObject = new MvcObject("查不到此用户：" + requestAccountNumber, "100");
         } else {
-            resultMap.put("queryUser", queryUser);
+            List<User> list = new ArrayList<>();
+            list.add(queryUser);
+            resultMap.put("userList", list);
             mvcObject = new MvcObject("查找成功", "100", resultMap);
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../query_user_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
     //根据好友ID删除好友
@@ -69,6 +82,7 @@ public class RelationController {
     @ResponseBody
     public MvcObject deleteFriendByFriendId(HttpServletRequest request) {
         MvcObject mvcObject = null;
+
         String requestFriendId = request.getParameter("friendId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
@@ -90,6 +104,7 @@ public class RelationController {
     @ResponseBody
     public MvcObject moveFriendToOtherList(HttpServletRequest request) {
         MvcObject mvcObject = null;
+
         //我也不知道前端到时会怎么写，这里先从request里获取，以后写好再改    2019年7月22日 16:36:21
         String requestFriendId = request.getParameter("friendId");
         String requestListId = request.getParameter("listId");
@@ -110,11 +125,12 @@ public class RelationController {
 
     //根据userId查找用户拥有的好友分组
     @RequestMapping("queryFriendListByUserId")
-
+    @ResponseBody
     public ModelAndView queryFriendListByUserId(HttpServletRequest request) {
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>();
         ModelAndView modelAndView = null;
+
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
         if (requestUserId != null && !("".equals(requestUserId))) {
@@ -128,31 +144,62 @@ public class RelationController {
         } else {
             mvcObject = new MvcObject("系统异常", "202");
         }
-        modelAndView = new ModelAndView("forward:../myFriendList.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        modelAndView = new ModelAndView("forward:../my_friend_list.jsp", "mvcObject", JSON.toJSON(mvcObject));
         return modelAndView;
     }
 
     //根据分组id和userId查看指定分组下的好友
     @RequestMapping("/queryFriendByListId")
     @ResponseBody
-    public MvcObject queryFriendByListId(HttpServletRequest request) {
+    public ModelAndView queryFriendByListId(HttpServletRequest request) {
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>();
+        ModelAndView modelAndView = null;
+
         String requestListId = request.getParameter("listId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
         if (requestUserId != null && !("".equals(requestUserId))) {
             List<Friend> list = relationService.queryFriendByListId(requestUserId, requestListId);
             if (list.size() != 0) {
-                resultMap.put("resultList", list);
-                mvcObject = new MvcObject("查询成功，共" + list.size() + "条数据", "99", resultMap);
+                List<User> userList = userService.queryUserListByQueryList(list);
+                resultMap.put("userList",userList);
+                mvcObject = new MvcObject("查询成功，共" + list.size() + "条数据", "100", resultMap);
             } else {
-                mvcObject = new MvcObject("查询成功", "200");
+                mvcObject = new MvcObject("查询失败", "200");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../friend_list_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
+    }
+
+    /*
+     * 展示搜索用户的个人资料
+     * */
+    @RequestMapping("/personal_info")
+    @ResponseBody
+    public ModelAndView showPersonalInfo(HttpServletRequest request) {
+        MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
+        Map<String, Object> resultMap = new HashMap<>(16);
+
+        String requestUserId = request.getParameter("userId");
+        if (requestUserId != null && !("".equals(requestUserId))) {
+            //查询个人信息，并且封装到user类中
+            User user = userService.queryUserInfoByUserId(requestUserId);
+            if (user != null) {
+                resultMap.put("user", user);
+                mvcObject = new MvcObject("查询成功", "100", resultMap);
+            } else {
+                mvcObject = new MvcObject("查询失败", "200");
+            }
+        } else {
+            mvcObject = new MvcObject("系统异常", "202");
+        }
+        modelAndView = new ModelAndView("forward:../query_friend_info.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
 

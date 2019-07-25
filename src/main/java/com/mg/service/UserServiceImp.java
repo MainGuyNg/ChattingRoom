@@ -1,13 +1,16 @@
 package com.mg.service;
 
 import com.mg.dao.UserMapper;
+import com.mg.model.Friend;
 import com.mg.model.User;
 import com.mg.utils.SystemCurrentTimeUtil;
 import com.mg.utils.UuidUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImp implements UserService {
@@ -69,6 +72,12 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public User queryUserInfoByUserId(String userId) {
+        User user = userMapper.queryUserByUserId(userId);
+        return user;
+    }
+
+    @Override
     //result   0：更新0条数据  1：更新一条数据  102：密码不一致  101：查不到用户数据
     public Integer modifyPassword(String accountNumber, String oldPassword, String newPassword) {
         User user = userMapper.selectUserByAccountNumber(accountNumber);
@@ -101,5 +110,17 @@ public class UserServiceImp implements UserService {
         user.setModifyTime(new Date(SystemCurrentTimeUtil.getCurrentDate()));
         int result = userMapper.updateUserHeadIcon(user);
         return result;
+    }
+
+    @Override
+    public List queryUserListByQueryList(List list) {
+        List<User> resultList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            Friend queryFriend = (Friend) list.get(i);
+            String friendId = queryFriend.getFriendId();
+            User user = queryUserInfoByUserId(friendId);
+            resultList.add(user);
+        }
+        return resultList;
     }
 }

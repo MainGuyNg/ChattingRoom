@@ -3,6 +3,8 @@ package com.mg.service;
 
 import com.mg.model.User;
 
+import java.util.List;
+
 public interface UserService {
     Integer register(User record);
 
@@ -17,4 +19,8 @@ public interface UserService {
     Integer modifyPassword(String accountNumber, String oldPassword, String newPassword);
 
     Integer updateUserHeadIcon(String accountNumber, String headUrl, String relativePath);
+
+    User queryUserInfoByUserId(String userId);
+
+    List queryUserListByQueryList(List list);
 }

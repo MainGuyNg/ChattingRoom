@@ -239,10 +239,16 @@
         where nickname=#{nickname,jdbcType=VARCHAR}
     </select>
 
-    <select id="queruUserByAccountNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="queryUserByAccountNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List_Without_Password"/>
         from user
         where account_number=#{accountNumber,jdbcType=VARCHAR}
+    </select>
+    <select id="queryUserByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List_Without_Password"/>
+        from user
+        where user_id=#{userId,jdbcType=VARCHAR}
     </select>
 </mapper>
