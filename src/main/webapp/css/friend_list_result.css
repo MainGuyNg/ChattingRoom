@@ -1,0 +1,50 @@
+#friend_list_result_all {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    border: 3px solid hotpink;
+}
+
+#friend_list_result_div_top {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+
+#friend_list_result_div_top font {
+    font-size: 30px;
+}
+
+#friend_list_result_div_middle {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+}
+
+#friend_list_result{
+    width: 300px;
+    float: left;
+}
+
+.friend_list_result_content {
+    height: 25px;
+    text-align: center;
+}
+
+.friend_list_result_content a {
+    text-decoration: none;
+}
+
+#friend_list_result_div_bottom {
+    width: 100%;
+    height: 35px;
+    text-align: center;
+}
+
+#friend_list_result_div_bottom_content {
+    width: 160px;
+    margin: auto;
+}

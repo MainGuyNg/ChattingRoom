@@ -1,0 +1,64 @@
+#query_friend_info_all {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    border: 3px solid hotpink;
+}
+
+#query_friend_info_div_top {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    float: left;
+}
+
+#query_friend_info_div_top font {
+    font-size: 30px;
+}
+
+#query_friend_info_div_middle {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+}
+
+#query_friend_info_div_middle_left {
+    width: 100px;
+    height: auto;
+    float: left;
+}
+
+#query_friend_info_div_middle_right {
+    width: 200px;
+    height: auto;
+    float: left;
+}
+
+.query_friend_info_div_middle_left_content {
+    height: 25px;
+    text-align: right;
+}
+
+.query_friend_info_div_middle_right_content {
+    height: 25px;
+}
+
+#query_friend_info_div_bottom {
+    width: 100%;
+    height: 35px;
+    text-align: center;
+}
+
+#query_friend_info_div_bottom_content {
+    width: 160px;
+    margin: auto;
+}
+
+#headUrl {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: 2px darkgrey solid;
+}
