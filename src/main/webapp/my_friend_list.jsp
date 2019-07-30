@@ -26,7 +26,7 @@
                 var listId = list.listId;
                 var listName = list.listName;
                 var friendCount = list.friendCount;
-                $("#friend_list").append("<div class='friend_list_content'><a href=" + "'${ctx}/relation/queryFriendByListId?listId=" + listId + "'>" + listName + "  (" + friendCount + ")</a></div>");
+                $("#friend_list").append("<div class='friend_list_content'><a href=" + "'${ctx}/relation/query_friend?listId=" + listId + "'>" + listName + "  (" + friendCount + ")</a></div>");
             }
         } else if (code == "202") {
             alert(data.msg);
@@ -41,7 +41,7 @@
 <body>
 <div id="friend_list_all">
     <div id="friend_list_div_top">
-        <font>好友列表</font><br/>
+        <font>好友列表</font>
     </div>
     <div id="friend_list_div_middle">
         <div style="width: 300px;margin: auto;">
@@ -52,14 +52,14 @@
 
             <div id="friend_list_div_middle_right">
                 <div class="friend_list_div_middle_right_content">
-                    <form action="${ctx}/relation/queryUserByAccountNumber" method="get">
+                    <form action="${ctx}/relation/query_user_by_accountNumber" method="get">
                         <input type="text" id="accountNumber" name="accountNumber" maxlength="16" placeholder="请输入好友账号"
                                style="width: 120px;"/>
                         <input type="submit" value="搜索"/>
                     </form>
                 </div>
                 <div class="friend_list_div_middle_right_content">
-                    <form action="${ctx}/relation/queryUserByNickname" method="get">
+                    <form action="${ctx}/relation/query_user_by_nickname" method="get">
                         <input type="text" id="nickname" name="nickname" maxlength="16" placeholder="请输入好友昵称"
                                style="width: 120px;"/>
                         <input type="submit" value="搜索"/>

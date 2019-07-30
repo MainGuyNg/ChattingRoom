@@ -83,7 +83,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${ctx}/user/uploadHeadIcon" method="post" enctype="multipart/form-data">
+<form action="${ctx}/user/upload_head_icon" method="post" enctype="multipart/form-data">
     <div style="padding: 20px">
         <input onchange="FirstImg()" name="headUrl" style="opacity:0;position:absolute" type="file" id="headUrl" multiple="">
         <div position:absolute="">

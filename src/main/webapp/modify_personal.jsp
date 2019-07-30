@@ -44,7 +44,7 @@
             $.ajax({
                 type: "POST",
                 async: false,
-                url: "${ctx}/user/modify",
+                url: "${ctx}/user/modify_personal_info",
                 data: user,
                 success: function (data) {
                     console.info("success");

@@ -119,7 +119,7 @@ public class UserController {
     /*
      * 根据session中的账号，修改个人信息
      * */
-    @RequestMapping("/modify")
+    @RequestMapping("/modify_personal_info")
     @ResponseBody
     public MvcObject modifyPersonalInfo(User user, HttpServletRequest request) {
         MvcObject mvcObject = null;
@@ -169,7 +169,7 @@ public class UserController {
     }
 
     //上传头像
-    @RequestMapping("/uploadHeadIcon")
+    @RequestMapping("/upload_head_icon")
     @ResponseBody
     public MvcObject uploadHeadIcon(@RequestParam("headUrl") CommonsMultipartFile multipartFile, HttpServletRequest request) {
         MvcObject mvcObject = null;

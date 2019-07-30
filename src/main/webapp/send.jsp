@@ -96,7 +96,7 @@
 <body>
 <font style="font-size: 30px;">你好,${sessionScope.NICKNAME}</font>
 <a href="${ctx}/user/personal_info">个人中心</a>
-<a href="${ctx}/relation/queryFriendListByUserId">好友列表</a>
+<a href="${ctx}/relation/query_friend_list">好友列表</a>
 <a href="${ctx}/user/logout" onclick="websocketClose()">退出聊天室</a>
 <br/><br/>
 

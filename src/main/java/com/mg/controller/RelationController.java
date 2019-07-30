@@ -34,7 +34,7 @@ public class RelationController {
     UserService userService;
 
     //根据昵称模糊查找对象
-    @RequestMapping("/queryUserByNickname")
+    @RequestMapping("/query_user_by_nickname")
     @ResponseBody
     public ModelAndView queryUserByNickname(HttpServletRequest request) {
         ModelAndView modelAndView = null;
@@ -56,7 +56,7 @@ public class RelationController {
     }
 
     //通过注册账号精确查找对象
-    @RequestMapping("/queryUserByAccountNumber")
+    @RequestMapping("/query_user_by_accountNumber")
     @ResponseBody
     public ModelAndView queryUserByAccountNumber(HttpServletRequest request) {
         ModelAndView modelAndView = null;
@@ -78,7 +78,7 @@ public class RelationController {
     }
 
     //根据好友ID删除好友
-    @RequestMapping("/deleteFriend")
+    @RequestMapping("/delete_friend")
     @ResponseBody
     public MvcObject deleteFriendByFriendId(HttpServletRequest request) {
         MvcObject mvcObject = null;
@@ -100,7 +100,7 @@ public class RelationController {
     }
 
     //修改好友所在的分组
-    @RequestMapping("/moveFriendToOtherList")
+    @RequestMapping("/move_friend_to_other_list")
     @ResponseBody
     public MvcObject moveFriendToOtherList(HttpServletRequest request) {
         MvcObject mvcObject = null;
@@ -124,7 +124,7 @@ public class RelationController {
     }
 
     //根据userId查找用户拥有的好友分组
-    @RequestMapping("queryFriendListByUserId")
+    @RequestMapping("query_friend_list")
     @ResponseBody
     public ModelAndView queryFriendListByUserId(HttpServletRequest request) {
         MvcObject mvcObject = null;
@@ -149,7 +149,7 @@ public class RelationController {
     }
 
     //根据分组id和userId查看指定分组下的好友
-    @RequestMapping("/queryFriendByListId")
+    @RequestMapping("/query_friend")
     @ResponseBody
     public ModelAndView queryFriendByListId(HttpServletRequest request) {
         MvcObject mvcObject = null;

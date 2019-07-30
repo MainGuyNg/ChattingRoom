@@ -14,7 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${ctx}/user/uploadHeadIcon" method="post" enctype="multipart/form-data">
+<form action="${ctx}/user/upload_head_icon" method="post" enctype="multipart/form-data">
     <input type="file" id="headUrl" name="headUrl" required="required"/>
     <input type="submit" value="上传"/>
 </form>

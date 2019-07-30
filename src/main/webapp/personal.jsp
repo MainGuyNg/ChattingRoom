@@ -29,7 +29,7 @@
                 </c:if>
             </div>
             <div>
-                <a href="${ctx}/modify_headIcon.jsp">修改头像</a>
+                <a href="${ctx}/modify_head_icon.jsp">修改头像</a>
             </div>
         </div>
         <div id="personal_div_middle">
