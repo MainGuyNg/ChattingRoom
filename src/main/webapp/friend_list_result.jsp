@@ -13,12 +13,15 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/css/friend_list_result.css"/>
 <script type="text/javascript" src="${ctx}/js/jquery-3.4.1.min.js"></script>
 <script>
-    $(function () {
-        $("#delete_friend_button").click(function () {
-            var friendId = $("#delete_friend_button").val();
-            window.location="${ctx}/relation/delete_friend?friendId="+friendId;
-        })
-    })
+    function modify_friend(id) {
+        var friendId = document.getElementById(id).value;
+        window.location = "${ctx}/relation/modify_friend?friendId=" + friendId;
+    }
+
+    function delete_friend(id) {
+        var friendId = document.getElementById(id).value;
+        window.location = "${ctx}/relation/delete_friend?friendId=" + friendId;
+    }
 </script>
 <head>
     <title>分组好友</title>
@@ -31,10 +34,15 @@
     <div id="friend_list_result_div_middle">
         <div style="width: 300px;margin: auto;">
             <div id="friend_list_result">
-                <c:forEach items="${mvcObject.map.userList}" var="listData">
+                <c:forEach items="${mvcObject.map.friendList}" var="listData" varStatus="userStatus">
                     <div class="friend_list_result_content">
                         名称：<a href="${ctx}/relation/personal_info?userId=${listData.userId}">${listData.nickname}</a>
-                        <button type="button" id="delete_friend_button" value="${listData.userId}">删除</button>
+                        <button type="button" id="modify_friend_button_${userStatus.index}" value="${listData.userId}"
+                                onclick="modify_friend(this.id)">编辑
+                        </button>
+                        <button type="button" id="delete_friend_button_${userStatus.index}" value="${listData.userId}"
+                                onclick="delete_friend(this.id)">删除
+                        </button>
                     </div>
                 </c:forEach>
             </div>

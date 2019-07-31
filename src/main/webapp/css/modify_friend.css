@@ -1,0 +1,50 @@
+#modify_friend_all {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    border: 3px solid hotpink;
+}
+
+#modify_friend_div_top {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+
+#modify_friend_div_top font {
+    font-size: 30px;
+}
+
+#modify_friend_div_middle {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+}
+
+#modify_friend{
+    width: 300px;
+    float: left;
+}
+
+.modify_friend_content {
+    height: 25px;
+    text-align: center;
+}
+
+.modify_friend_content a {
+    text-decoration: none;
+}
+
+#modify_friend_div_bottom {
+    width: 100%;
+    height: 35px;
+    text-align: center;
+}
+
+#modify_friend_div_bottom_content {
+    width: 160px;
+    margin: auto;
+}

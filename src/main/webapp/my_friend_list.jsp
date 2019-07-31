@@ -22,10 +22,10 @@
         if (code == "100") {
             var friendList = data.map.friendList;
             for (var i = 0; i < friendList.length; i++) {
-                var list = friendList[i];
-                var listId = list.listId;
-                var listName = list.listName;
-                var friendCount = list.friendCount;
+                var listData = friendList[i];
+                var listId = listData.listId;
+                var listName = listData.listName;
+                var friendCount = listData.friendCount;
                 $("#friend_list").append("<div class='friend_list_content'><a href=" + "'${ctx}/relation/query_friend?listId=" + listId + "'>" + listName + "  (" + friendCount + ")</a></div>");
             }
         } else if (code == "202") {
