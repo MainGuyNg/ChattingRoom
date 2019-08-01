@@ -141,4 +141,12 @@
         where
         list_id=#{listId,jdbcType=VARCHAR} and user_id=#{userId,jdbcType=VARCHAR}
     </select>
+
+    <update id="modifyFriendRemark" parameterType="com.mg.model.Friend">
+        update friend
+        set
+        friend_remark=#{friendRemark,jdbcType=VARCHAR}
+        where
+        user_id=#{userId,jdbcType=VARCHAR} and friend_id=#{friendId,jdbcType=VARCHAR}
+    </update>
 </mapper>

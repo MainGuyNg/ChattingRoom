@@ -78,4 +78,9 @@ public class RelationServiceImp implements RelationService {
         return list;
     }
 
+    @Override
+    public Integer modifyFriendRemark(Friend record) {
+        Integer result = friendMapper.modifyFriendRemark(record);
+        return result;
+    }
 }

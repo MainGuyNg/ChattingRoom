@@ -27,4 +27,6 @@ public interface FriendMapper {
     List queryFriendByListId(@Param("userId") String userId, @Param("listId") String listId);
 
     int queryFriendCountByListIdAndUserId(@Param("userId") String userId, @Param("listId") String listId);
+
+    int modifyFriendRemark(Friend record);
 }

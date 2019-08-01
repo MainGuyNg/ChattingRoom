@@ -20,4 +20,6 @@ public interface RelationService {
 
     List queryFriendByListId(String userId, String listId);
 
+    Integer modifyFriendRemark(Friend record);
+
 }

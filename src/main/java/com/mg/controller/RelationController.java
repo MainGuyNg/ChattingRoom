@@ -234,11 +234,29 @@ public class RelationController {
 
     @RequestMapping("/modify_friend_remark")
     @ResponseBody
-    public MvcObject modifyFriendRemark(HttpServletRequest request){
+    public MvcObject modifyFriendRemark(HttpServletRequest request) {
         MvcObject mvcObject = null;
         String requestFriendRemark = request.getParameter("friendRemark");
+        String requestFriendId = request.getParameter("friendId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
+
+        if (requestUserId != null & !("".equals(requestUserId))) {
+            Friend friend = new Friend();
+            friend.setUserId(requestUserId);
+            friend.setFriendId(requestFriendId);
+            friend.setFriendRemark(requestFriendRemark);
+
+            int result = relationService.modifyFriendRemark(friend);
+
+            if (result == 0) {
+                mvcObject = new MvcObject("更新失败", "200");
+            } else {
+                mvcObject = new MvcObject("更新成功", "100");
+            }
+        } else {
+            mvcObject = new MvcObject("系统异常", "202");
+        }
         return mvcObject;
     }
 
