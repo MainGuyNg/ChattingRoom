@@ -12,7 +12,7 @@ public interface RelationService {
 
     Boolean queryRelationStatus(Friend record);
 
-    User queryUserByAccountNumber(String accountNumber);
+    List queryUserByAccountNumber(String accountNumber);
 
     Integer deleteFriendByUserIdAndFriendId(String userId, String friendId);
 

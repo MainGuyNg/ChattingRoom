@@ -1,5 +1,6 @@
 package com.mg.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.mg.core.MvcObject;
 import com.mg.core.WebSocketHandler;
 import com.mg.model.User;
@@ -59,8 +60,10 @@ public class UserController {
     public String login(HttpServletRequest request) {
         MvcObject mvcObject = null;
         Map<String, Object> resultMap = new HashMap<>(16);
+
         String requestAccountNumber = request.getParameter("accountNumber");
         String requestPassword = request.getParameter("password");
+
         User user = userService.login(requestAccountNumber);
         if (user != null) {
             if (requestPassword.equals(user.getPassword())) {
@@ -100,6 +103,7 @@ public class UserController {
 
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
+
         if (requestAccountNumber != null && !("".equals(requestAccountNumber))) {
             //查询个人信息，并且封装到user类中
             User user = userService.selectUserToShowPersonalInfo(requestAccountNumber);
@@ -121,15 +125,16 @@ public class UserController {
      * */
     @RequestMapping("/modify_personal_info")
     @ResponseBody
-    public MvcObject modifyPersonalInfo(User user, HttpServletRequest request) {
+    public ModelAndView modifyPersonalInfo(User user, HttpServletRequest request) {
         MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
+
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
         String nickname = user.getNickname();
 
         //把账号也封装到user类里面，因为修改个人资料时传入的参数是user类
         user.setAccountNumber(requestAccountNumber);
-        System.out.println("修改资料：" + user.toString());
         int result = userService.modifyPersonalInfo(user);
         if (result == 0) {
             mvcObject = new MvcObject("更新个人资料失败", "100");
@@ -140,45 +145,53 @@ public class UserController {
             }
             mvcObject = new MvcObject("成功更新" + result + "条资料", "200");
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../modify_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
     //修改密码
     @RequestMapping("/modify_password")
-    public String modifyPersonalInfo(HttpServletRequest request) {
+    public ModelAndView modifyPersonalInfo(HttpServletRequest request) {
         MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
+
         HttpSession session = request.getSession();
         String requestAccountNumber = (String) session.getAttribute("ACCOUNTNUMBER");
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
-        //service层做了密码校验
-        int result = userService.modifyPassword(requestAccountNumber, oldPassword, newPassword);
-        if (result == 1) {
-            mvcObject = new MvcObject("修改密码成功", "100");
-        } else if (result == 0) {
-            mvcObject = new MvcObject("修改密码失败", "200");
-        } else if (result == 101) {
-            mvcObject = new MvcObject("查不到该用户", "101");
-        } else if (result == 102) {
-            mvcObject = new MvcObject("密码不一致", "102");
+        if (newPassword != null & !("".equals(newPassword))) {
+            //service层做了密码校验
+            int result = userService.modifyPassword(requestAccountNumber, oldPassword, newPassword);
+            if (result == 1) {
+                mvcObject = new MvcObject("修改密码成功", "100");
+            } else if (result == 0) {
+                mvcObject = new MvcObject("修改密码失败", "200");
+            } else if (result == 201) {
+                mvcObject = new MvcObject("查不到该用户", "201");
+            } else if (result == 202) {
+                mvcObject = new MvcObject("密码不一致", "202");
+            }
+        } else {
+            mvcObject = new MvcObject("新密码不能为空", "202");
         }
-        Map<String, Object> resultMap = new HashMap<>(16);
-        resultMap.put("resultObject", mvcObject);
-        request.setAttribute("resultMap", resultMap);
-        return "modify_result";
+        modelAndView = new ModelAndView("forward:../modify_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
     //上传头像
     @RequestMapping("/upload_head_icon")
     @ResponseBody
-    public MvcObject uploadHeadIcon(@RequestParam("headUrl") CommonsMultipartFile multipartFile, HttpServletRequest request) {
+    public ModelAndView uploadHeadIcon(@RequestParam("headUrl") CommonsMultipartFile multipartFile, HttpServletRequest request) {
         MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
+
         //声明常量，head_icon_img是在该项目工程下的保存头像的文件夹，IO流也会往里面写文件
         final String RELATIVEPATH = "\\head_icon_img";
 
         //sourcePath大概就是F:\apache-tomcat-8.5.35\webapps\ChattingRoom\head_icon_img这个路径
         String sourcePath = request.getServletContext().getRealPath(RELATIVEPATH);
         FileItem fileItem = multipartFile.getFileItem();
+
         if (fileItem != null) {
             //获取文件名
             String fileName = fileItem.getName();
@@ -217,13 +230,15 @@ public class UserController {
         } else {
             mvcObject = new MvcObject("传入的文件非法", "204");
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../modify_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("ACCOUNTNUMBER");
+
         System.out.println(this.getCurrentTime() + "  用户 " + username + " 访问注销接口");
         session.invalidate();
         return "redirect:../login.jsp";

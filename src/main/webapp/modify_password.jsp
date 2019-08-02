@@ -17,9 +17,9 @@
     $(function () {
 
         $("#modify_password_button").click(function () {
+            var oldPasword = $("#oldPassword").val();
             var newPassword = $("#newPassword").val();
             var confirm_password = $("#confirm_password").val();
-
             if (newPassword != confirm_password) {
                 alert("两次输入的密码不一致");
                 return;
@@ -34,10 +34,10 @@
 </head>
 <body>
 <div id="modify_password_all">
-    <form id="modify_password_form" action="${ctx}/user/modify_password" method="post">
-        <div id="modify_password_div_top">
-            <font>修改密码</font>
-        </div>
+    <div id="modify_password_div_top">
+        <font>修改密码</font>
+    </div>
+    <form action="${ctx}/user/modify_password" method="post" id="modify_password_form">
         <div id="modify_password_div_middle">
             <div style="width: 300px;margin: auto;">
                 <div id="modify_password_div_middle_left">
@@ -63,12 +63,13 @@
             </div>
             <div id="modify_password_div_bottom">
                 <div id="modify_password_div_bottom_content">
-                    <button type="button" id="modify_password_button">修改</button>
+                    <button type="button" id="modify_password_button">提交</button>
                     <button type="button" onclick="window.location='${ctx}/user/personal_info'">返回</button>
                 </div>
             </div>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>

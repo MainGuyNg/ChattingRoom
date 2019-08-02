@@ -1,7 +1,6 @@
 package com.mg.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.mg.core.MvcObject;
 import com.mg.model.Friend;
 import com.mg.model.FriendList;
@@ -10,7 +9,6 @@ import com.mg.service.FriendListService;
 import com.mg.service.RelationService;
 import com.mg.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +40,9 @@ public class RelationController {
         Map<String, Object> resultMap = new HashMap<>();
 
         String requestNickname = request.getParameter("nickname");
-        List<User> resultList = relationService.queryUserByNickname(requestNickname);
 
+        //模糊查询可能会查到多个相同的User对象，所以用list封装
+        List<User> resultList = relationService.queryUserByNickname(requestNickname);
         int listSize = resultList.size();
         if (listSize == 0) {
             mvcObject = new MvcObject("查不到此用户", "100");
@@ -65,13 +63,13 @@ public class RelationController {
         Map<String, Object> resultMap = new HashMap<>();
 
         String requestAccountNumber = request.getParameter("accountNumber");
-        User queryUser = relationService.queryUserByAccountNumber(requestAccountNumber);
-        if (queryUser == null) {
+
+        //因为模糊查询和精确查询都公用一个页面，所以这里也干脆封进去list里面
+        List<User> queryUserList = relationService.queryUserByAccountNumber(requestAccountNumber);
+        if (queryUserList == null && queryUserList.size() == 0) {
             mvcObject = new MvcObject("查不到此用户：" + requestAccountNumber, "100");
         } else {
-            List<User> list = new ArrayList<>();
-            list.add(queryUser);
-            resultMap.put("userList", list);
+            resultMap.put("userList", queryUserList);
             mvcObject = new MvcObject("查找成功", "100", resultMap);
         }
         modelAndView = new ModelAndView("forward:../query_user_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
@@ -81,12 +79,14 @@ public class RelationController {
     //根据好友ID删除好友
     @RequestMapping("/delete_friend")
     @ResponseBody
-    public MvcObject deleteFriendByFriendId(HttpServletRequest request) {
+    public ModelAndView deleteFriendByFriendId(HttpServletRequest request) {
         MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
 
         String requestFriendId = request.getParameter("friendId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
+
         if (requestUserId != null && !("".equals(requestUserId))) {
             int result = relationService.deleteFriendByUserIdAndFriendId(requestUserId, requestFriendId);
             if (result == 0) {
@@ -97,21 +97,24 @@ public class RelationController {
         } else {
             mvcObject = new MvcObject("系统异常", "202");
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../modify_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
     //修改好友所在的分组
     @RequestMapping("/move_friend_to_other_list")
     @ResponseBody
-    public MvcObject moveFriendToOtherList(HttpServletRequest request) {
+    public ModelAndView moveFriendToOtherList(HttpServletRequest request) {
         MvcObject mvcObject = null;
+        ModelAndView modelAndView = null;
 
-        //我也不知道前端到时会怎么写，这里先从request里获取，以后写好再改    2019年7月22日 16:36:21
         String requestFriendId = request.getParameter("friendId");
         String requestListId = request.getParameter("listId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
+
         if (requestUserId != null && !("".equals(requestUserId))) {
+            //三个参数依次是userId,friendId,listId
             int result = relationService.moveFriendToOtherList(requestUserId, requestFriendId, requestListId);
             if (result == 0) {
                 mvcObject = new MvcObject("200", "更新失败");
@@ -121,21 +124,29 @@ public class RelationController {
         } else {
             mvcObject = new MvcObject("系统异常", "202");
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../modify_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
-    /**/
+
+    /*
+     * 修改好友信息的时候，会先从friend_list_result页面获取friendId
+     * 然后会根据userId获取用户下拥有哪些分组，再把分组friendList和要修改的好友id封装到hashMap里面
+     * 最后传到modify_friend.jsp里进行修改
+     * */
     @RequestMapping("modify_friend")
     @ResponseBody
     public ModelAndView modifyFriend(HttpServletRequest request) {
         MvcObject mvcObject = null;
-        Map<String, Object> resultMap = new HashMap<>();
         ModelAndView modelAndView = null;
+        Map<String, Object> resultMap = new HashMap<>();
 
         HttpSession session = request.getSession();
         String requestFriendId = request.getParameter("friendId");
         String requestUserId = (String) session.getAttribute("USERID");
+
         if (requestUserId != null && !("".equals(requestUserId))) {
+            //根据userId获取该用户下的好友分组
             List<FriendList> friendList = friendListService.queryFriendListByUserId(requestUserId);
             if (friendList != null) {
                 resultMap.put("friendList", friendList);
@@ -161,6 +172,7 @@ public class RelationController {
 
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
+
         if (requestUserId != null && !("".equals(requestUserId))) {
             List<FriendList> friendList = friendListService.queryFriendListByUserId(requestUserId);
             if (friendList.size() != 0) {
@@ -187,6 +199,7 @@ public class RelationController {
         String requestListId = request.getParameter("listId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
+
         if (requestUserId != null && !("".equals(requestUserId))) {
             //查询用户分组下的好友列表，list的泛型指定为Friend
             List<Friend> queryFriendList = relationService.queryFriendByListId(requestUserId, requestListId);
@@ -216,6 +229,7 @@ public class RelationController {
         Map<String, Object> resultMap = new HashMap<>(16);
 
         String requestUserId = request.getParameter("userId");
+
         if (requestUserId != null && !("".equals(requestUserId))) {
             //查询个人信息，并且封装到user类中
             User user = userService.queryUserInfoByUserId(requestUserId);
@@ -232,11 +246,14 @@ public class RelationController {
         return modelAndView;
     }
 
+    //修改好友备注
     @RequestMapping("/modify_friend_remark")
     @ResponseBody
-    public MvcObject modifyFriendRemark(HttpServletRequest request) {
+    public ModelAndView modifyFriendRemark(HttpServletRequest request) {
         MvcObject mvcObject = null;
-        String requestFriendRemark = request.getParameter("friendRemark");
+        ModelAndView modelAndView = null;
+
+        String requestFriendRemark = request.getParameter("friendRemark");      //前端传入的好友备注
         String requestFriendId = request.getParameter("friendId");
         HttpSession session = request.getSession();
         String requestUserId = (String) session.getAttribute("USERID");
@@ -257,7 +274,8 @@ public class RelationController {
         } else {
             mvcObject = new MvcObject("系统异常", "202");
         }
-        return mvcObject;
+        modelAndView = new ModelAndView("forward:../modify_result.jsp", "mvcObject", JSON.toJSON(mvcObject));
+        return modelAndView;
     }
 
 

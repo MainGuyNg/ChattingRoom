@@ -91,11 +91,11 @@ public class UserServiceImp implements UserService {
                 result = userMapper.modifyPassword(user);
                 return result;
             } else {
-                result = 102;
+                result = 202;
                 return result;
             }
         } else {
-            result = 101;
+            result = 201;
             return result;
         }
     }

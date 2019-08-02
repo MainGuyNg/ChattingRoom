@@ -1,4 +1,4 @@
-#modify_all {
+#modify_personal_all {
     width: 400px;
     height: auto;
     margin: auto;
@@ -6,51 +6,51 @@
     border: 3px solid hotpink;
 }
 
-#modify_div_top {
+#modify_personal_div_top {
     width: 100%;
     height: 50px;
     text-align: center;
     float: left;
 }
 
-#modify_div_top font {
+#modify_personal_div_top font {
     font-size: 30px;
 }
 
-#modify_div_middle {
+#modify_personal_div_middle {
     width: 100%;
     height: auto;
     margin: auto;
     display: inline-block;
 }
 
-#modify_div_middle_left {
+#modify_personal_div_middle_left {
     width: 100px;
     height: auto;
     float: left;
 }
 
-#modify_div_middle_right {
+#modify_personal_div_middle_right {
     width: 200px;
     height: auto;
     float: left;
 }
 
-.modify_div_middle_left_content {
+.modify_personal_div_middle_left_content {
     height: 25px;
     text-align: right;
 }
 
-.modify_div_middle_right_content {
+.modify_personal_div_middle_right_content {
     height: 25px;
 }
 
-#modify_div_bottom {
+#modify_personal_div_bottom {
     width: 100%;
     text-align: center;
 }
 
-#modify_div_bottom_content{
+#modify_personal_div_bottom_content{
     width: 160px;
     margin: auto;
 }

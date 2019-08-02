@@ -25,16 +25,18 @@
             var listData = friendList[i];
             var listId = listData.listId;
             var listName = listData.listName;
+            console.info("listId=" + listId + ",listName=" + listName);
             $("#modify_friend_list").append("<option value='" + listId + "'>" + listName + "</option>");
         }
 
         $("#modify_friend_list").change(function () {
-            window.location = "${ctx}/relation/move_friend_to_other_list?friendId=" + friendId + "&listId=" + listId;
+            var data = $("#modify_friend_list").val();
+            window.location = "${ctx}/relation/move_friend_to_other_list?friendId=" + friendId + "&listId=" + data;
         });
 
         $("#modify_friend_remark_form_button").click(function () {
             var friendRemark = $("#friendRemark").val();
-            window.location="${ctx}/relation/modify_friend_remark?friendId="+friendId+"&friendRemark="+friendRemark;
+            window.location = "${ctx}/relation/modify_friend_remark?friendId=" + friendId + "&friendRemark=" + friendRemark;
 
         })
     })

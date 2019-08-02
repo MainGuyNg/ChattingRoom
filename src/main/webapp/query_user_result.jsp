@@ -16,7 +16,7 @@
     $(function () {
         $("#add_friend_button").click(function () {
             var userId = $("#add_friend_button").val();
-            window.location="${ctx}/relation/personal_info?userId="+userId;
+            window.location="${ctx}/relation/add_friend?userId="+userId;
         })
     })
 </script>

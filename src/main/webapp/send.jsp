@@ -16,13 +16,21 @@
         var websocket = null;
         if ('WebSocket' in window) {
             console.info("is websocket");
+            /*
+            * 这里websocket如果填写localhost，如果启动了服务器，用手机访问网站的话
+            * 手机的websocket为手机的localhost，而非工程项目的localhost
+            * */
+
             websocket = new WebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer")
+            // websocket = new WebSocket("ws://192.168.10.119:8080/ChattingRoom/websocket/socketServer")
         } else if ('MozWebSocket' in window) {
             console.info("is mozwebsocket");
             websocket = new MozWebSocket("ws://localhost:8080/ChattingRoom/websocket/socketServer");
+            // websocket = new MozWebSocket("ws://192.168.10.119:8080/ChattingRoom/websocket/socketServer");
         } else {
             console.info("is sockJs");
             websocket = new SockJS("http://localhost:8080/ChattingRoom/sockjs/socketServer");
+            // websocket = new SockJS("http://192.168.10.119:8080/ChattingRoom/sockjs/socketServer");
         }
         websocket.onopen = onOpen;
         websocket.onmessage = onMessage;
@@ -31,9 +39,9 @@
 
         function onMessage(evt) {
             console.info(evt.data)
-            if(evt.data!="Cannot find this user") {
+            if (evt.data != "Cannot find this user") {
                 setMessageInnerHTML(evt.data);
-            }else{
+            } else {
                 alert("找不到该用户");
             }
         }
@@ -100,7 +108,8 @@
 <a href="${ctx}/user/logout" onclick="websocketClose()">退出聊天室</a>
 <br/><br/>
 
-<img src="${ctx}/${sessionScope.HEADURL}" style="width: 100px;height: 100px;border-radius: 100%;border:2px darkgrey solid;"/><br/>
+<img src="${ctx}/${sessionScope.HEADURL}"
+     style="width: 100px;height: 100px;border-radius: 100%;border:2px darkgrey solid;"/><br/>
 
 请输入内容：<br/>
 <textarea rows="5" cols="50" id="inputMsg" name="inputMsg"></textarea><br/>

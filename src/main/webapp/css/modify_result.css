@@ -1,0 +1,25 @@
+#modify_result_all {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    border: 3px solid hotpink;
+}
+
+#modify_result_div_top {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    float: left;
+}
+
+#modify_result_div_top font {
+    font-size: 30px;
+}
+
+#modify_result_div_middle {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+}

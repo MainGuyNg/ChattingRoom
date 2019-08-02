@@ -55,9 +55,9 @@ public class RelationServiceImp implements RelationService {
     }
 
     @Override
-    public User queryUserByAccountNumber(String accountNumber) {
-        User user = userMapper.queryUserByAccountNumber(accountNumber);
-        return user;
+    public List queryUserByAccountNumber(String accountNumber) {
+        List<User> list = userMapper.queryUserByAccountNumber(accountNumber);
+        return list;
     }
 
     @Override
