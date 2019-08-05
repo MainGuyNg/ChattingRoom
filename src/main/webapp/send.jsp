@@ -68,7 +68,7 @@
                     if (msg == null || msg == "") {
                         alert("消息不能为空！")
                     } else {
-                        websocket.send(toUser + "&-:" + msg);//调用后台handleTextMessage方法
+                        websocket.send(toUser + "&-:" + msg);   //调用后台handleTextMessage方法
                     }
                 }
             } else {
@@ -80,7 +80,7 @@
         function doSendAllUsers() {
             if (websocket.readyState == websocket.OPEN) {
                 var msg = document.getElementById("inputMsg").value;
-                websocket.send(msg);//调用后台handleTextMessage方法
+                websocket.send(msg);    //调用后台handleTextMessage方法
             } else {
                 alert("连接失败!");
             }
@@ -102,13 +102,13 @@
     </script>
 </head>
 <body>
-<font style="font-size: 30px;">你好,${sessionScope.NICKNAME}</font>
+<font style="font-size: 30px;">你好,${sessionScope.USER_SESSION.nickname}</font>
 <a href="${ctx}/user/personal_info">个人中心</a>
 <a href="${ctx}/relation/query_friend_list">好友列表</a>
 <a href="${ctx}/user/logout" onclick="websocketClose()">退出聊天室</a>
 <br/><br/>
 
-<img src="${ctx}/${sessionScope.HEADURL}"
+<img src="${ctx}/${sessionScope.USER_SESSION.headUrl}"
      style="width: 100px;height: 100px;border-radius: 100%;border:2px darkgrey solid;"/><br/>
 
 请输入内容：<br/>

@@ -85,14 +85,19 @@ public class RelationController {
 
         String requestFriendId = request.getParameter("friendId");
         HttpSession session = request.getSession();
-        String requestUserId = (String) session.getAttribute("USERID");
+        User requestUser = (User) session.getAttribute("USER_SESSION");
+        if (requestUser != null) {
+            String requestUserId = requestUser.getUserId();
 
-        if (requestUserId != null && !("".equals(requestUserId))) {
-            int result = relationService.deleteFriendByUserIdAndFriendId(requestUserId, requestFriendId);
-            if (result == 0) {
-                mvcObject = new MvcObject("200", "删除失败");
+            if (requestUserId != null && !("".equals(requestUserId))) {
+                int result = relationService.deleteFriendByUserIdAndFriendId(requestUserId, requestFriendId);
+                if (result == 0) {
+                    mvcObject = new MvcObject("200", "删除失败");
+                } else {
+                    mvcObject = new MvcObject("100", "删除" + result + "条记录");
+                }
             } else {
-                mvcObject = new MvcObject("100", "删除" + result + "条记录");
+                mvcObject = new MvcObject("系统异常", "202");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
@@ -111,15 +116,20 @@ public class RelationController {
         String requestFriendId = request.getParameter("friendId");
         String requestListId = request.getParameter("listId");
         HttpSession session = request.getSession();
-        String requestUserId = (String) session.getAttribute("USERID");
+        User requestUser = (User) session.getAttribute("USER_SESSION");
+        if (requestUser != null) {
+            String requestUserId = requestUser.getUserId();
 
-        if (requestUserId != null && !("".equals(requestUserId))) {
-            //三个参数依次是userId,friendId,listId
-            int result = relationService.moveFriendToOtherList(requestUserId, requestFriendId, requestListId);
-            if (result == 0) {
-                mvcObject = new MvcObject("200", "更新失败");
+            if (requestUserId != null && !("".equals(requestUserId))) {
+                //三个参数依次是userId,friendId,listId
+                int result = relationService.moveFriendToOtherList(requestUserId, requestFriendId, requestListId);
+                if (result == 0) {
+                    mvcObject = new MvcObject("200", "更新失败");
+                } else {
+                    mvcObject = new MvcObject("100", "更新" + result + "条记录");
+                }
             } else {
-                mvcObject = new MvcObject("100", "更新" + result + "条记录");
+                mvcObject = new MvcObject("系统异常", "202");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
@@ -143,17 +153,22 @@ public class RelationController {
 
         HttpSession session = request.getSession();
         String requestFriendId = request.getParameter("friendId");
-        String requestUserId = (String) session.getAttribute("USERID");
+        User requestUser = (User) session.getAttribute("USER_SESSION");
+        if (requestUser != null) {
+            String requestUserId = requestUser.getUserId();
 
-        if (requestUserId != null && !("".equals(requestUserId))) {
-            //根据userId获取该用户下的好友分组
-            List<FriendList> friendList = friendListService.queryFriendListByUserId(requestUserId);
-            if (friendList != null) {
-                resultMap.put("friendList", friendList);
-                resultMap.put("friendId", requestFriendId);
-                mvcObject = new MvcObject("查询成功", "100", resultMap);
+            if (requestUserId != null && !("".equals(requestUserId))) {
+                //根据userId获取该用户下的好友分组
+                List<FriendList> friendList = friendListService.queryFriendListByUserId(requestUserId);
+                if (friendList != null) {
+                    resultMap.put("friendList", friendList);
+                    resultMap.put("friendId", requestFriendId);
+                    mvcObject = new MvcObject("查询成功", "100", resultMap);
+                } else {
+                    mvcObject = new MvcObject("查询数据为空，系统异常", "202");
+                }
             } else {
-                mvcObject = new MvcObject("查询数据为空，系统异常", "202");
+                mvcObject = new MvcObject("系统异常", "202");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
@@ -171,15 +186,20 @@ public class RelationController {
         ModelAndView modelAndView = null;
 
         HttpSession session = request.getSession();
-        String requestUserId = (String) session.getAttribute("USERID");
+        User requestUser = (User) session.getAttribute("USER_SESSION");
+        if (requestUser != null) {
+            String requestUserId = requestUser.getUserId();
 
-        if (requestUserId != null && !("".equals(requestUserId))) {
-            List<FriendList> friendList = friendListService.queryFriendListByUserId(requestUserId);
-            if (friendList.size() != 0) {
-                resultMap.put("friendList", friendList);
-                mvcObject = new MvcObject("查找分组成功", "100", resultMap);
+            if (requestUserId != null && !("".equals(requestUserId))) {
+                List<FriendList> friendList = friendListService.queryFriendListByUserId(requestUserId);
+                if (friendList.size() != 0) {
+                    resultMap.put("friendList", friendList);
+                    mvcObject = new MvcObject("查找分组成功", "100", resultMap);
+                } else {
+                    mvcObject = new MvcObject("查找分组失败，查无不到该用户的相关数据", "200");
+                }
             } else {
-                mvcObject = new MvcObject("查找分组失败，查无不到该用户的相关数据", "200");
+                mvcObject = new MvcObject("系统异常", "202");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
@@ -198,18 +218,23 @@ public class RelationController {
 
         String requestListId = request.getParameter("listId");
         HttpSession session = request.getSession();
-        String requestUserId = (String) session.getAttribute("USERID");
+        User requestUser = (User) session.getAttribute("USER_SESSION");
+        if (requestUser != null) {
+            String requestUserId = requestUser.getUserId();
 
-        if (requestUserId != null && !("".equals(requestUserId))) {
-            //查询用户分组下的好友列表，list的泛型指定为Friend
-            List<Friend> queryFriendList = relationService.queryFriendByListId(requestUserId, requestListId);
-            if (queryFriendList != null) {
-                //根据上面的好友列表里的friendId查找详细的用户信息（去除了密码），并且一次封装成一个新的list，list的泛型指定为User
-                List<User> friendList = userService.queryUserListByQueryList(queryFriendList);
-                resultMap.put("friendList", friendList);
-                mvcObject = new MvcObject("查询成功，共" + queryFriendList.size() + "条数据", "100", resultMap);
+            if (requestUserId != null && !("".equals(requestUserId))) {
+                //查询用户分组下的好友列表，list的泛型指定为Friend
+                List<Friend> queryFriendList = relationService.queryFriendByListId(requestUserId, requestListId);
+                if (queryFriendList != null) {
+                    //根据上面的好友列表里的friendId查找详细的用户信息（去除了密码），并且一次封装成一个新的list，list的泛型指定为User
+                    List<User> friendList = userService.queryUserListByQueryList(queryFriendList);
+                    resultMap.put("friendList", friendList);
+                    mvcObject = new MvcObject("查询成功，共" + queryFriendList.size() + "条数据", "100", resultMap);
+                } else {
+                    mvcObject = new MvcObject("查询失败", "200");
+                }
             } else {
-                mvcObject = new MvcObject("查询失败", "200");
+                mvcObject = new MvcObject("系统异常", "202");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
@@ -256,20 +281,25 @@ public class RelationController {
         String requestFriendRemark = request.getParameter("friendRemark");      //前端传入的好友备注
         String requestFriendId = request.getParameter("friendId");
         HttpSession session = request.getSession();
-        String requestUserId = (String) session.getAttribute("USERID");
+        User requestUser = (User) session.getAttribute("USER_SESSION");
+        if (requestUser != null) {
+            String requestUserId = requestUser.getUserId();
 
-        if (requestUserId != null & !("".equals(requestUserId))) {
-            Friend friend = new Friend();
-            friend.setUserId(requestUserId);
-            friend.setFriendId(requestFriendId);
-            friend.setFriendRemark(requestFriendRemark);
+            if (requestUserId != null & !("".equals(requestUserId))) {
+                Friend friend = new Friend();
+                friend.setUserId(requestUserId);
+                friend.setFriendId(requestFriendId);
+                friend.setFriendRemark(requestFriendRemark);
 
-            int result = relationService.modifyFriendRemark(friend);
+                int result = relationService.modifyFriendRemark(friend);
 
-            if (result == 0) {
-                mvcObject = new MvcObject("更新失败", "200");
+                if (result == 0) {
+                    mvcObject = new MvcObject("更新失败", "200");
+                } else {
+                    mvcObject = new MvcObject("更新成功", "100");
+                }
             } else {
-                mvcObject = new MvcObject("更新成功", "100");
+                mvcObject = new MvcObject("系统异常", "202");
             }
         } else {
             mvcObject = new MvcObject("系统异常", "202");
