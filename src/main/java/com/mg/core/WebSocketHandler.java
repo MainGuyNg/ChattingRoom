@@ -14,10 +14,10 @@ import java.util.Set;
 
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private static final Map<Object, WebSocketSession> userMap;  //Map来存储WebSocketSession，key用USER_ID 即在线用户列表
+    private static final Map<Object, WebSocketSession> userMap;  //Map来存储WebSocketSession，key用user对象存储，value是当前用户的websocketSession对象，即在线用户列表
 
     //用户标识
-    private static final String USER_ID = "WEBSOCKET_USERID";   //对应监听器中的key
+    private static final String USER_ID = "WEBSOCKET_USERID";   //对应拦截器中的beforeHandShake传入的Map的key
 
     static {
         userMap = new HashMap<Object, WebSocketSession>();
@@ -32,7 +32,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         User requestUser = (User) session.getAttributes().get(USER_ID);
         userMap.put(requestUser, session);
-        sendMessageToAllUsers(new TextMessage("用户 " + requestUser.getUserId() + " 进入聊天室，当前用户数量为：" + userMap.size()));
+        sendMessageToAllUsers(new TextMessage("用户 " + requestUser.getNickname() + " 进入聊天室，当前用户数量为：" + userMap.size()));
     }
 
     @Override
@@ -70,7 +70,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         User requestUser = (User) session.getAttributes().get(USER_ID);
         if (requestUser != null) {
-            System.out.println(requestUser.getUserId() + "...连接关闭");
+            System.out.println(requestUser.getAccountNumber() + "...连接关闭");
             userMap.get(requestUser).close();
             userMap.remove(requestUser);
             sendMessageToAllUsers(new TextMessage("用户 " + requestUser.getNickname() + " 已断开连接，当前用户数量为 " + userMap.size()));
