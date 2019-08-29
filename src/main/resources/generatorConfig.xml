@@ -36,7 +36,6 @@
             <columnOverride column="head_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
 
-
         <table tableName="friend_list" domainObjectName="FriendList" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>

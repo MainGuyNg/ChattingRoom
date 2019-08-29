@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 02/08/2019 11:04:57
+ Date: 29/08/2019 17:20:11
 */
 
 SET NAMES utf8mb4;
@@ -29,13 +29,13 @@ CREATE TABLE `friend`  (
   `friend_remark` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `add_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of friend
 -- ----------------------------
-INSERT INTO `friend` VALUES (3, 'FDE2CEE7C2604A5299722523E64CA8AD', '1', 'C11678D5D6634B62A59AB12E792EE597', NULL, NULL);
-INSERT INTO `friend` VALUES (4, 'FDE2CEE7C2604A5299722523E64CA8AD', '0', '7A088509B77D43688970E147243D1C71', NULL, NULL);
+INSERT INTO `friend` VALUES (3, 'FDE2CEE7C2604A5299722523E64CA8AD', '0', 'C11678D5D6634B62A59AB12E792EE597', NULL, NULL);
+INSERT INTO `friend` VALUES (4, 'FDE2CEE7C2604A5299722523E64CA8AD', '0', '7A088509B77D43688970E147243D1C71', 'na', NULL);
 
 -- ----------------------------
 -- Table structure for friend_list
@@ -56,6 +56,7 @@ INSERT INTO `friend_list` VALUES (3, 'C56CDA7AB8A146D9ABB353BEF2A0A8DF', '0', '�
 INSERT INTO `friend_list` VALUES (4, 'FDE2CEE7C2604A5299722523E64CA8AD', '0', '我的好友');
 INSERT INTO `friend_list` VALUES (5, 'FDE2CEE7C2604A5299722523E64CA8AD', '1', '亲友团');
 INSERT INTO `friend_list` VALUES (6, '7A088509B77D43688970E147243D1C71', '0', '我的好友');
+INSERT INTO `friend_list` VALUES (7, '54A59A4F11954F0D8FA28B927BDD72C3', '0', '我的好友');
 
 -- ----------------------------
 -- Table structure for friend_message_record
@@ -136,8 +137,9 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('54A59A4F11954F0D8FA28B927BDD72C3', '123', '123', '123', '32123', '2', '321', '2019-08-07', '2019-08-02 17:24:42', '2019-08-05 16:02:31', '2019-08-05 19:00:50', '\\head_icon_img\\123.jpg');
 INSERT INTO `user` VALUES ('7A088509B77D43688970E147243D1C71', 'test2018', 'test2018', 'test2018', '15812345678', '2', 'test2018', '2019-07-17', '2019-07-25 16:30:18', NULL, '2019-07-25 16:33:08', NULL);
-INSERT INTO `user` VALUES ('C11678D5D6634B62A59AB12E792EE597', 'admin', 'admin', 'admin', '15812345678', '2', 'admin', '2019-07-03', '2019-07-17 14:54:37', NULL, '2019-07-25 16:32:37', NULL);
-INSERT INTO `user` VALUES ('FDE2CEE7C2604A5299722523E64CA8AD', 'mainguy', 'mainguy', '123456', '5456456464', '2', 'test2018', '2019-07-03', '2019-07-17 14:59:13', '2019-07-29 15:25:06', '2019-07-31 17:06:50', '\\head_icon_img\\mainguy.jpg');
+INSERT INTO `user` VALUES ('C11678D5D6634B62A59AB12E792EE597', 'admin', 'admin', 'admin', '15812345678', '2', 'admin', '2019-07-03', '2019-07-17 14:54:37', NULL, '2019-08-05 11:43:34', NULL);
+INSERT INTO `user` VALUES ('FDE2CEE7C2604A5299722523E64CA8AD', 'mainguy', 'mainguy', '123', '5456456464', '2', 'test2018', '2019-07-03', '2019-07-17 14:59:13', '2019-08-02 16:09:23', '2019-08-08 18:58:28', '\\head_icon_img\\mainguy.jpg');
 
 SET FOREIGN_KEY_CHECKS = 1;
